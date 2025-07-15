@@ -7,9 +7,10 @@
   --accent-teal: #1a9a9d;
   --accent-blue: #2d5384;
   --accent-blue-light: #717d96;
+  --accent-blue-light-disabled: #d8dce5;
   --accent-purple: #2a3158;
   --accent-navy: #0e1326;
-  
+
   --bg-primary: #ffffff;
   --bg-secondary: #f5f5f7;
   --bg-tertiary: #fafafa;
@@ -60,6 +61,14 @@
   /* 28px */
   --font-size-tech-icon: 1.063rem;
   /* 17px */
+
+  /* Gallery */
+  --viewport-content: min(980px, 100vw); /* 1024 - 22px padding on both sides */
+  --gallery-side-padding: round(
+    down,
+    calc((100vw - var(--viewport-content)) / 2),
+    1px
+  );
 }
 
 * {
@@ -420,7 +429,14 @@ nav a:hover {
   background: var(--bg-primary);
   padding: 0 0 6rem 0;
   position: relative;
-  overflow: scroll;
+  overflow: hidden;
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  padding: 0;
 }
 
 .tech-header {
@@ -430,14 +446,90 @@ nav a:hover {
   margin-bottom: 4rem;
 }
 
+.tech-gallery {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.scroll-container {
+  display: grid;
+  overflow-x: scroll;
+  padding-block-end: 48px;
+  scroll-padding: var(--gallery-side-padding);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
 .tech-grid {
   align-items: stretch;
   display: flex;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  list-style: none;
   margin: 0;
-  padding: 0 calc((100vw - min(1024px, 100vw)) / 2 + 20px) 0 0;
+  padding: 0 var(--gallery-side-padding);
+  width: -moz-fit-content;
   width: fit-content;
+}
+
+.tech-grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.paddle-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  width: var(--viewport-content);
+  padding: 0 22px;
+  position: relative;
+}
+
+.paddle-nav ul {
+  display: flex;
+  gap: 20px;
+  height: 36px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  width: 92px;
+}
+
+.paddle-button {
+  align-items: center;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 36px;
+
+  transition: background-color 0.1s linear, color 0.1s linear,
+    opacity 0.1s linear;
+  background: var(--accent-blue-light);
+  color: var(--text-primary);
+  will-change: opacity;
+}
+
+.paddle-button svg {
+  height: 100%;
+  width: 100%;
+  fill: currentColor;
+}
+
+.paddle-button:hover {
+  background: rgba(210, 210, 215, 0.8);
+}
+
+.paddle-button:disabled {
+  background: var(--accent-blue-light-disabled);
+  opacity: 0.42;
+  pointer-events: none;
 }
 
 .tech-card {

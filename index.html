@@ -44,56 +44,96 @@
     <section id="services" class="tech-showcase">
       <div class="container">
         <h2 class="tech-header fade-in stagger-1">Get to know us.</h2>
-        <div class="tech-grid">
-          <div
-            class="tech-card tech-card-with-bg"
-            data-image="resources/card-solutions.png"
-          >
-            <h3 class="headline-medium text-shadow">Solutions Oriented</h3>
-            <p class="text-shadow">
-              Building the exact solution you need, without unnecessary
-              complexity.
-            </p>
+      </div>
+      <div class="tech-gallery">
+        <div class="scroll-container">
+          <div class="tech-grid">
+            <div
+              class="tech-card tech-card-with-bg"
+              data-image="resources/card-solutions.png"
+            >
+              <h3 class="headline-medium text-shadow">Solutions Oriented</h3>
+              <p class="text-shadow">
+                Building the exact solution you need, without unnecessary
+                complexity.
+              </p>
+            </div>
+            <div
+              class="tech-card tech-card-with-bg"
+              data-image="resources/card-user-experience.png"
+            >
+              <h3 class="headline-medium text-shadow">
+                User Experience Focused
+              </h3>
+              <p class="text-shadow">
+                Designing elegant, human-centered interfaces that are effortless
+                to use.
+              </p>
+            </div>
+            <div
+              class="tech-card tech-card-with-bg"
+              data-image="resources/card-standards.png"
+            >
+              <h3 class="headline-medium text-shadow">Precision Engineered</h3>
+              <p class="text-shadow">
+                Applying modern development practices for reliable and
+                maintainable code.
+              </p>
+            </div>
+            <div
+              class="tech-card tech-card-with-bg"
+              data-image="resources/card-scalable.png"
+            >
+              <h3 class="headline-medium text-shadow">Future Proofed</h3>
+              <p class="text-shadow">
+                Designing future-proof systems that grow with your business
+                needs.
+              </p>
+            </div>
+            <div
+              class="tech-card tech-card-with-bg"
+              data-image="resources/card-ai.png"
+            >
+              <h3 class="headline-medium text-shadow">
+                Intelligence Amplified
+              </h3>
+              <p class="text-shadow">
+                Empowering you to navigate your most complex challenges through
+                AI.
+              </p>
+            </div>
           </div>
-          <div
-            class="tech-card tech-card-with-bg"
-            data-image="resources/card-user-experience.png"
-          >
-            <h3 class="headline-medium text-shadow">User Experience Focused</h3>
-            <p class="text-shadow">
-              Designing elegant, human-centered interfaces that are effortless
-              to use.
-            </p>
-          </div>
-          <div
-            class="tech-card tech-card-with-bg"
-            data-image="resources/card-standards.png"
-          >
-            <h3 class="headline-medium text-shadow">Precision Engineered</h3>
-            <p class="text-shadow">
-              Applying modern development practices for reliable and
-              maintainable code.
-            </p>
-          </div>
-          <div
-            class="tech-card tech-card-with-bg"
-            data-image="resources/card-scalable.png"
-          >
-            <h3 class="headline-medium text-shadow">Future Proofed</h3>
-            <p class="text-shadow">
-              Designing future-proof systems that grow with your business needs.
-            </p>
-          </div>
-          <div
-            class="tech-card tech-card-with-bg"
-            data-image="resources/card-ai.png"
-          >
-            <h3 class="headline-medium text-shadow">Intelligence Amplified</h3>
-            <p class="text-shadow">
-              Empowering you to navigate your most complex challenges through
-              AI.
-            </p>
-          </div>
+        </div>
+        <div class="paddle-nav">
+          <ul>
+            <li>
+              <button
+                id="scroll-left"
+                aria-label="Previous item in services gallery"
+                class="paddle-button"
+                disabled
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                  <path
+                    d="M20 25c-.384 0-.768-.146-1.06-.44l-5.5-5.5a1.5 1.5 0 0 1 0-2.12l5.5-5.5a1.5 1.5 0 1 1 2.12 2.12L16.622 18l4.44 4.44A1.5 1.5 0 0 1 20 25z"
+                  ></path>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                id="scroll-right"
+                aria-label="Next item in services gallery"
+                class="paddle-button"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                  <path
+                    d="M22.56 16.938l-5.508-5.5a1.493 1.493 0 0 0-2.116.003 1.502 1.502 0 0 0 .004 2.121L19.384 18l-4.444 4.438A1.502 1.502 0 0 0 15.996 25c.382 0 .764-.145 1.056-.438l5.508-5.5a1.502 1.502 0 0 0 0-2.125z"
+                  ></path>
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -226,6 +266,68 @@
             });
           }
         });
+      });
+
+      // Tech cards horizontal scroll functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const techGrid = document.querySelector(".tech-grid");
+        const scrollLeftBtn = document.getElementById("scroll-left");
+        const scrollRightBtn = document.getElementById("scroll-right");
+
+        if (techGrid && scrollLeftBtn && scrollRightBtn) {
+          // Calculate scroll amount (one card width + gap)
+          const calculateScrollAmount = () => {
+            const cards = techGrid.querySelectorAll(".tech-card");
+            if (cards.length > 0) {
+              const card = cards[0];
+              const cardWidth = card.offsetWidth;
+              const computedStyle = window.getComputedStyle(techGrid);
+              const gap =
+                parseInt(computedStyle.getPropertyValue("gap"), 10) || 20;
+              return cardWidth + gap;
+            }
+            return 392; // Default: 372px card + 20px gap
+          };
+
+          // Update button states
+          const updateButtonStates = () => {
+            const maxScroll = techGrid.scrollWidth - techGrid.clientWidth;
+            scrollLeftBtn.disabled = techGrid.scrollLeft <= 0;
+            scrollRightBtn.disabled = techGrid.scrollLeft >= maxScroll - 2; // -2 for rounding errors
+          };
+
+          // Scroll left
+          scrollLeftBtn.addEventListener("click", () => {
+            const scrollAmount = calculateScrollAmount();
+            techGrid.scrollBy({
+              left: -scrollAmount,
+              behavior: "smooth",
+            });
+            setTimeout(updateButtonStates, 500); // Update after animation
+          });
+
+          // Scroll right
+          scrollRightBtn.addEventListener("click", () => {
+            const scrollAmount = calculateScrollAmount();
+            techGrid.scrollBy({
+              left: scrollAmount,
+              behavior: "smooth",
+            });
+            setTimeout(updateButtonStates, 500); // Update after animation
+          });
+
+          // Update button states on scroll and resize
+          techGrid.addEventListener("scroll", updateButtonStates);
+          window.addEventListener("resize", () => {
+            updateButtonStates();
+          });
+
+          // Initial button state
+          updateButtonStates();
+
+          // Force a recalculation after a short delay to ensure proper initialization
+          setTimeout(updateButtonStates, 100);
+        }
       });
 
       // Add loading animation
