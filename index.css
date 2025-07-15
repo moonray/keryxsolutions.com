@@ -6,10 +6,13 @@
   --accent-mint-hover: #7ad3c3;
   --accent-teal: #1a9a9d;
   --accent-blue: #2d5384;
-  --accent-blue-light: #717d96;
-  --accent-blue-light-disabled: #d8dce5;
+  --accent-blue-grey: #717d96;
   --accent-purple: #2a3158;
   --accent-navy: #0e1326;
+
+  --accent-mist: #b8bfd0;
+  --accent-mist-hover: #c8ceda;
+  --accent-mist-disabled: #d8dce5;
 
   --bg-primary: #ffffff;
   --bg-secondary: #f5f5f7;
@@ -17,7 +20,7 @@
   --bg-contrast: var(--accent-navy);
   --text-primary: var(--accent-navy);
   --text-secondary: var(--accent-blue);
-  --text-tertiary: var(--accent-blue-light);
+  --text-tertiary: var(--accent-blue-grey);
   --text-contrast: #ffffffeb;
   --border: rgba(0, 0, 0, 0.1);
   --shadow: rgba(0, 0, 0, 0.1);
@@ -498,8 +501,10 @@ nav a:hover {
 
 .paddle-button {
   align-items: center;
+  background: var(--accent-mist);
   border-radius: 50%;
   border: 0;
+  color: var(--text-primary);
   cursor: pointer;
   display: flex;
   height: 36px;
@@ -511,8 +516,6 @@ nav a:hover {
 
   transition: background-color 0.1s linear, color 0.1s linear,
     opacity 0.1s linear;
-  background: var(--accent-blue-light);
-  color: var(--text-primary);
   will-change: opacity;
 }
 
@@ -523,11 +526,11 @@ nav a:hover {
 }
 
 .paddle-button:hover {
-  background: rgba(210, 210, 215, 0.8);
+  background: var(--accent-mist-hover);
 }
 
 .paddle-button:disabled {
-  background: var(--accent-blue-light-disabled);
+  background: var(--accent-mist-disabled);
   opacity: 0.42;
   pointer-events: none;
 }
@@ -612,7 +615,8 @@ nav a:hover {
   font-size: var(--font-size-xl);
   line-height: 1.7;
   opacity: 0.95;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem auto;
+  max-width: 760px;
 }
 
 .cta-button {

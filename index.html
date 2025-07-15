@@ -194,9 +194,9 @@
         <div class="contact-content">
           <h2 class="headline-large fade-in">Take the next step.</h2>
           <p class="body-medium fade-in stagger-1">
-            Connect with Bala to discuss how standards-based development,
-            user-centered design, and AI integration can create solutions that
-            perfectly align with your needs.
+            Connect with us today to build what matters for your business. We deliver
+            reliable solutions that adapt to your evolving needs and create lasting
+            value, whether for a single project or an ongoing partnership.
           </p>
           <span class="fade-in stagger-2"
             ><a href="#" class="cta-button open-modal">Get in touch</a></span
@@ -270,11 +270,12 @@
 
       // Tech cards horizontal scroll functionality
       document.addEventListener("DOMContentLoaded", () => {
+        const scrollContainer = document.querySelector(".scroll-container");
         const techGrid = document.querySelector(".tech-grid");
         const scrollLeftBtn = document.getElementById("scroll-left");
         const scrollRightBtn = document.getElementById("scroll-right");
 
-        if (techGrid && scrollLeftBtn && scrollRightBtn) {
+        if (scrollContainer && techGrid && scrollLeftBtn && scrollRightBtn) {
           // Calculate scroll amount (one card width + gap)
           const calculateScrollAmount = () => {
             const cards = techGrid.querySelectorAll(".tech-card");
@@ -291,15 +292,17 @@
 
           // Update button states
           const updateButtonStates = () => {
-            const maxScroll = techGrid.scrollWidth - techGrid.clientWidth;
-            scrollLeftBtn.disabled = techGrid.scrollLeft <= 0;
-            scrollRightBtn.disabled = techGrid.scrollLeft >= maxScroll - 2; // -2 for rounding errors
+            const maxScroll =
+              scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            scrollLeftBtn.disabled = scrollContainer.scrollLeft <= 0;
+            scrollRightBtn.disabled =
+              scrollContainer.scrollLeft >= maxScroll - 2; // -2 for rounding errors
           };
 
           // Scroll left
           scrollLeftBtn.addEventListener("click", () => {
             const scrollAmount = calculateScrollAmount();
-            techGrid.scrollBy({
+            scrollContainer.scrollBy({
               left: -scrollAmount,
               behavior: "smooth",
             });
@@ -309,7 +312,7 @@
           // Scroll right
           scrollRightBtn.addEventListener("click", () => {
             const scrollAmount = calculateScrollAmount();
-            techGrid.scrollBy({
+            scrollContainer.scrollBy({
               left: scrollAmount,
               behavior: "smooth",
             });
@@ -317,7 +320,7 @@
           });
 
           // Update button states on scroll and resize
-          techGrid.addEventListener("scroll", updateButtonStates);
+          scrollContainer.addEventListener("scroll", updateButtonStates);
           window.addEventListener("resize", () => {
             updateButtonStates();
           });
