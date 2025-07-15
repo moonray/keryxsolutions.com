@@ -46,8 +46,8 @@
   /* 48px */
   --font-size-7xl: 4rem;
   /* 64px */
-  --font-size-8xl: 4.5rem;
-  /* 72px */
+  --font-size-8xl: 6rem;
+  /* 96px */
   --font-size-headline-large: clamp(2rem, 4vw, 3rem);
   --font-size-headline-medium: clamp(1.5rem, 3vw, 2.25rem);
   --font-size-icon: 1.5rem;
@@ -280,9 +280,9 @@ nav a:hover {
   align-items: center;
   background: var(--bg-primary);
   display: flex;
-  height: 90vh;
+  height: 82vh;
   justify-content: center;
-  margin-bottom: 8rem;
+  margin-bottom: 3rem;
   min-height: 540px;
   overflow: hidden;
   padding-top: 4rem;
@@ -297,7 +297,10 @@ nav a:hover {
 }
 
 .hero h1 {
-  margin-bottom: 1.5rem;
+  font-weight: 600;
+  line-height: 1.04167;
+  margin: 0 auto 1.5rem auto;
+  max-width: 700px;
 }
 
 .hero p {
@@ -343,7 +346,7 @@ nav a:hover {
 /* About Section */
 .about {
   background: var(--bg-primary);
-  padding: 8rem 0;
+  padding: 0 0 8rem 0;
 }
 
 .about-hero {
