@@ -249,6 +249,7 @@ header:after {
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
+  text-shadow: 1px 1px 24px white;
 }
 
 nav ul {
@@ -260,13 +261,14 @@ nav ul {
 }
 
 nav a {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   display: inline-block;
   line-height: 22px;
   opacity: 0.8;
   text-decoration: none;
   transition: color 0.3s ease;
   white-space: nowrap;
+  text-shadow: 1px 1px 20px white;
 }
 
 nav a:hover {
