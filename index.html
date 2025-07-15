@@ -12,27 +12,7 @@
 
     <style>
         :root {
-            /* Dark mode colors (default) */
-            --bg-primary: #000000;
-            --bg-secondary: #0a0a0a;
-            --bg-tertiary: #1a1a1a;
-            --bg-quaternary: #111111;
-            --bg-contrast: #ffffff;
-            --text-primary: #f5f5f7;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #86868b;
-            --text-contrast: #000015;
-            --accent-blue: #007aff;
-            --accent-blue-hover: #0051d5;
-            --accent-purple: #af52de;
-            --accent-green: #30d158;
-            --border: rgba(255, 255, 255, 0.1);
-            --shadow: rgba(0, 0, 0, 0.8);
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        .light-mode {
-            /* Light mode colors */
+            /* Color variables - Light theme */
             --bg-primary: #ffffff;
             --bg-secondary: #f5f5f7;
             --bg-tertiary: #fafafa;
@@ -146,51 +126,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 20px var(--shadow);
-        }
 
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px var(--shadow);
-        }
-
-        .theme-toggle:hover .toggle-icon {
-            color: white;
-        }
-
-        .toggle-icon {
-            width: 20px;
-            height: 20px;
-            display: block;
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-        }
-
-        .sun-icon {
-            display: none;
-        }
-
-        .light-mode .sun-icon {
-            display: block;
-        }
-
-        .light-mode .moon-icon {
-            display: none;
-        }
 
         /* Header */
         header {
@@ -705,7 +641,7 @@
             border-top: 1px solid var(--border);
             font-size: 0.7rem;
             padding: 11px 0 11px 0;
-            text-align: left;
+            text-align: center;
         }
 
         .footer-content {
@@ -781,11 +717,7 @@
 </head>
 
 <body>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" id="theme-toggle">
-        <span class="toggle-icon sun-icon">☀️</span>
-        <span class="toggle-icon moon-icon">🌙</span>
-    </div>
+
 
     <!-- Header -->
     <header>
@@ -896,26 +828,7 @@
     </footer>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
 
-        // Check for saved theme preference or default to dark mode
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.classList.add('light-mode');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-
-            // Save theme preference
-            if (body.classList.contains('light-mode')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
-        });
 
         // Intersection Observer for scroll animations
         const observerOptions = {
