@@ -66,10 +66,10 @@
   /* 17px */
 
   /* Gallery */
-  --viewport-content: min(980px, 100vw); /* 1024 - 22px padding on both sides */
+  --viewport-content: min(980px, 100vw); /* 1024 - 20px padding on both sides */
   --gallery-side-padding: round(
     down,
-    calc((100vw - var(--viewport-content)) / 2),
+    calc((100vw - var(--viewport-content)) / 2 + 20px),
     1px
   );
 }
@@ -732,7 +732,7 @@ footer {
   }
 
   .tech-card {
-    width: 340px;
+    width: 350px;
     min-height: 620px;
     max-height: 680px;
   }
@@ -816,10 +816,6 @@ footer {
     font-size: 0.625rem;
   }
 
-  nav a {
-    line-height: 1.2;
-  }
-
   header .cta-button {
     padding-inline: 8px;
     padding-block: 2px;
@@ -860,7 +856,7 @@ footer {
   }
 
   .tech-card {
-    width: 280px;
+    width: 350px;
     min-height: 520px;
     max-height: 580px;
     padding: 24px;
@@ -970,8 +966,8 @@ footer {
   }
 }
 
-/* Extra small mobile (up to 375px) */
-@media (max-width: 375px) {
+/* Small mobile (up to 480px) */
+@media (max-width: 480px) {
   .headline-hero {
     font-size: var(--font-size-4xl);
   }
@@ -987,8 +983,8 @@ footer {
   .tech-card {
     width: 260px;
     min-height: 480px;
-    max-height: 540px;
-    padding: 20px;
+    max-height: 530px;
+    padding: 24px;
   }
 
   .tech-card p {
