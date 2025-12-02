@@ -789,7 +789,7 @@ footer {
 
 .work-details {
   margin-top: 8px;
-  height: 60px;
+  height: 69px;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
@@ -927,7 +927,7 @@ footer {
   }
 
   .work-details {
-    height: 55px;
+    height: 57px;
   }
 
   /* Value prop */
@@ -1121,7 +1121,7 @@ footer {
   }
 
   .work-details {
-    height: 50px;
+    height: 53px;
   }
 
   .work-services {
@@ -1223,7 +1223,7 @@ footer {
   }
 
   .work-details {
-    height: 45px;
+    height: 53px;
   }
 
   .work-services {
