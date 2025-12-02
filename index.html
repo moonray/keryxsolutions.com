@@ -678,6 +678,69 @@
             emblaApi.on('select', updateActiveSlide);
             emblaApi.on('init', updateActiveSlide);
             updateActiveSlide(); // Initial call
+
+            // Add horizontal wheel/touchpad scrolling support for continuous scrolling
+            let scrollAccumulator = 0;
+            let isScrolling = false;
+            let scrollDirection = 0; // Track scroll direction
+
+            emblaNode.addEventListener('wheel', (event) => {
+              // Only handle horizontal scrolling (check if horizontal is dominant)
+              if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+                // Prevent default immediately to stop browser back/forward navigation
+                event.preventDefault();
+
+                // Track scroll direction
+                scrollDirection = event.deltaX > 0 ? 1 : -1;
+
+                // Accumulate scroll delta for smooth continuous scrolling
+                scrollAccumulator += event.deltaX;
+
+                if (!isScrolling) {
+                  isScrolling = true;
+                  requestAnimationFrame(function scrollStep() {
+                    if (Math.abs(scrollAccumulator) > 0.5) {
+                      // Calculate progress through the carousel
+                      const scrollLength = emblaApi.scrollSnapList().length;
+                      const currentProgress = emblaApi.scrollProgress();
+                      const scrollDelta = scrollAccumulator / 2000; // Adjust sensitivity
+
+                      // Calculate new target progress
+                      let targetProgress = currentProgress + scrollDelta;
+
+                      // For loop mode, allow wrapping
+                      if (targetProgress < 0) targetProgress += 1;
+                      if (targetProgress > 1) targetProgress -= 1;
+
+                      // Convert progress to target index with directional snapping
+                      const targetPosition = targetProgress * (scrollLength - 1);
+                      let targetIndex;
+
+                      // Snap in the direction of scroll to prevent backward jumps
+                      if (scrollDirection > 0) {
+                        // Scrolling forward: always round up (ceil)
+                        targetIndex = Math.ceil(targetPosition);
+                      } else {
+                        // Scrolling backward: always round down (floor)
+                        targetIndex = Math.floor(targetPosition);
+                      }
+
+                      // Scroll to target without animation for continuous feel
+                      emblaApi.scrollTo(targetIndex, false);
+
+                      // Decay the accumulator
+                      scrollAccumulator *= 0.85;
+
+                      requestAnimationFrame(scrollStep);
+                    } else {
+                      scrollAccumulator = 0;
+                      isScrolling = false;
+                    }
+                  });
+                }
+              }
+              // If vertical scroll dominates, do nothing (allow normal page scroll)
+            }, { passive: false });
           }
         });
       });

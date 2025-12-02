@@ -721,16 +721,19 @@ footer {
   position: relative;
   width: 100%;
   margin-bottom: 2rem;
+  overscroll-behavior-x: contain;
 }
 
 .embla__viewport {
   overflow: hidden;
+  overscroll-behavior-x: contain;
 }
 
 .embla__container {
   display: flex;
   touch-action: pan-y pinch-zoom;
   backface-visibility: hidden;
+  overscroll-behavior-x: contain;
 }
 
 .embla__slide {
