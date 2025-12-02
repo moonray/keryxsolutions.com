@@ -1,0 +1,178 @@
+[
+  {
+    "id": "motorygroup",
+    "project": "Car Dealership Automall",
+    "client": "Motory Group",
+    "services": "Custom Development, Consulting, Maintenance & Support, Performance & Scalability, Site Building, Theme Development, SEO",
+    "stack": "Platform & Stack: WordPress, PHP",
+    "image": "resources/motorygroup.png"
+  },
+  {
+    "id": "espritcreations",
+    "project": "Wholesale Portal",
+    "client": "Esprit Creations",
+    "services": "Custom Development, Consulting, Maintenance & Support, Migration",
+    "stack": "Platform & Stack: Wordpress, Lightspeed POS, Lightspeed Ecommerce, Javascript, Python",
+    "image": "resources/espritcreations.png"
+  },
+  {
+    "id": "feathr",
+    "project": "Digital Marketing Platform",
+    "client": "Feathr",
+    "services": "Information Architecture / UX, Performance & Scalability, Site Building",
+    "stack": "Platform & Stack: Custom Web Application, React, Typescript, Python",
+    "image": "resources/feathr.png"
+  },
+  {
+    "id": "sharpspring",
+    "project": "Marketing Automation Platform",
+    "client": "SharpSpring",
+    "services": "Information Architecture / UX, Performance & Scalability, Site Building",
+    "stack": "Platform & Stack: Custom Web Application, React, Typescript, Node.js, PHP",
+    "image": "resources/sharpspring.png"
+  },
+  {
+    "id": "memorialcare",
+    "project": "Multi-Site CMS",
+    "client": "MemorialCare",
+    "services": "Consulting, Information Architecture / UX, Maintenance & Support, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/memorialcare.png"
+  },
+  {
+    "id": "stanford",
+    "project": "Stanford University Libraries",
+    "client": "Stanford University",
+    "services": "Consulting, Maintenance & Support, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/stanford-university-libraries.png"
+  },
+  {
+    "id": "nexant",
+    "project": "Nexant Thinking",
+    "client": "Nexant Inc.",
+    "services": "Consulting, Information Architecture / UX, Maintenance & Support, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/nexant.jpg"
+  },
+  {
+    "id": "coopervision",
+    "project": "Multi-Site CMS",
+    "client": "CooperVision",
+    "services": "Consulting, Information Architecture / UX, Maintenance & Support, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/coopervision.png"
+  },
+  {
+    "id": "ixia",
+    "project": "Ixia.com",
+    "client": "Ixia",
+    "services": "Consulting, Information Architecture / UX, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/ixia.png"
+  },
+  {
+    "id": "8x8",
+    "project": "8x8 Knowledge Base",
+    "client": "8x8",
+    "services": "Consulting, Information Architecture / UX, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/8x8.png"
+  },
+  {
+    "id": "frontline-solvers",
+    "project": "License Management System",
+    "client": "Frontline Systems Inc.",
+    "services": "Consulting, Custom Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/frontline-solvers.png"
+  },
+  {
+    "id": "digitaldetail",
+    "project": "Digital Detail Analytics Dashboard",
+    "client": "Warner Brothers Records",
+    "services": "Consulting, Custom Development, Information Architecture / UX, Maintenance & Support, Performance & Scalability, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/digitaldetail.jpg"
+  },
+  {
+    "id": "wels",
+    "project": "WELS",
+    "client": "Wisconsin Evangelical Lutheran Synod",
+    "services": "Consulting, Custom Development, Data Migration, Information Architecture / UX, Maintenance & Support, Performance & Scalability, Quality Assurance & Testing, Site Building, Theme Development, Training",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/wels.png"
+  },
+  {
+    "id": "edutopia",
+    "project": "Edutopia",
+    "client": "George Lucas Educational Foundation",
+    "services": "Consulting, Custom Development, Information Architecture / UX, Theme Development, Web Design",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/edutopia.png"
+  },
+  {
+    "id": "roy-orbison",
+    "project": "Roy Orbison",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/roy-orbison.jpg"
+  },
+  {
+    "id": "sir-mix-a-lot",
+    "project": "Sir Mix-a-lot",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/sir-mix-a-lot.jpeg"
+  },
+  {
+    "id": "glee",
+    "project": "Glee",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/glee.png"
+  },
+  {
+    "id": "kesha",
+    "project": "Ke$ha",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/ke$ha.png"
+  },
+  {
+    "id": "foo-fighters",
+    "project": "Foo Fighters",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/foo-fighters.png"
+  },
+  {
+    "id": "wbrnashville",
+    "project": "WBR Nashville",
+    "client": "Warner Brothers Records",
+    "services": "Custom Development, Information Architecture / UX, Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/wbrnashville.png"
+  },
+  {
+    "id": "mario",
+    "project": "Mario",
+    "client": "Sony Music",
+    "services": "Site Building, Theme Development",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/mario.png"
+  },
+  {
+    "id": "shape",
+    "project": "Shape.com",
+    "client": "American Media, Inc.",
+    "services": "Custom Development, Data Migration, Setup & Configuration",
+    "stack": "Platform & Stack: Drupal, PHP",
+    "image": "resources/shape.png"
+  }
+]

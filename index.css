@@ -294,7 +294,6 @@ nav a:hover {
   display: flex;
   height: 82vh;
   justify-content: center;
-  margin-bottom: 3rem;
   min-height: 540px;
   overflow: hidden;
   padding-top: 4rem;
@@ -430,7 +429,7 @@ nav a:hover {
 /* Tech Showcase */
 .tech-showcase {
   background: var(--bg-primary);
-  padding: 0 0 6rem 0;
+  padding: 3rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -696,6 +695,144 @@ footer {
   transition-delay: 0.3s;
 }
 
+/* Work Gallery Section */
+.work-gallery {
+  background: var(--bg-secondary);
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-header {
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.work-slider {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  backface-visibility: hidden;
+}
+
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.work-card {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.work-picture {
+  width: 340px;
+  height: 190px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--accent-navy);
+}
+
+.work-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.work-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.work-project {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.work-client {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.work-details {
+  margin-top: 8px;
+  height: 60px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.work-card:hover .work-details,
+.embla__slide--active .work-details {
+  opacity: 1;
+  visibility: visible;
+}
+
+.work-services {
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  margin: 0 0 6px 0;
+  color: var(--text-secondary);
+}
+
+.work-stack {
+  font-size: 0.625rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--text-tertiary);
+}
+
+.work-paddle-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-inline-end: auto;
+  margin-inline-start: auto;
+  width: var(--viewport-content);
+  padding: 0 22px;
+  position: relative;
+}
+
+.work-paddle-nav ul {
+  display: flex;
+  gap: 20px;
+  height: 36px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  width: 92px;
+}
+
 /* Responsive Design */
 
 /* Tablet (641px - 1023px) */
@@ -758,6 +895,36 @@ footer {
 
   .about-content {
     column-gap: 1.5rem;
+  }
+
+  /* Work gallery */
+  .work-gallery {
+    padding: 4rem 0 6rem 0;
+  }
+
+  .work-header {
+    margin-bottom: 3rem;
+  }
+
+  .work-card {
+    width: 314px;
+  }
+
+  .work-picture {
+    width: 314px;
+    height: 177px;
+  }
+
+  .work-project {
+    font-size: var(--font-size-sm);
+  }
+
+  .work-client {
+    font-size: var(--font-size-xs);
+  }
+
+  .work-details {
+    height: 55px;
   }
 
   /* Value prop */
@@ -923,6 +1090,49 @@ footer {
     margin-bottom: 1.25rem;
   }
 
+  /* Work gallery */
+  .work-gallery {
+    padding: 3rem 0 4rem 0;
+  }
+
+  .work-header {
+    margin-bottom: 2rem;
+  }
+
+  .work-card {
+    width: 241px;
+  }
+
+  .work-picture {
+    width: 241px;
+    height: 136px;
+    border-radius: 6px;
+  }
+
+  .work-project {
+    font-size: 0.8125rem;
+  }
+
+  .work-client {
+    font-size: 0.6875rem;
+  }
+
+  .work-details {
+    height: 50px;
+  }
+
+  .work-services {
+    font-size: 0.625rem;
+  }
+
+  .work-stack {
+    font-size: 0.5625rem;
+  }
+
+  .work-paddle-nav {
+    padding: 0 16px;
+  }
+
   /* Value prop */
   .value-prop {
     padding: 6rem 0;
@@ -989,6 +1199,36 @@ footer {
 
   .tech-card p {
     margin-bottom: 280px;
+  }
+
+  .work-card {
+    width: 220px;
+  }
+
+  .work-picture {
+    width: 220px;
+    height: 124px;
+    border-radius: 6px;
+  }
+
+  .work-project {
+    font-size: 0.75rem;
+  }
+
+  .work-client {
+    font-size: 0.625rem;
+  }
+
+  .work-details {
+    height: 45px;
+  }
+
+  .work-services {
+    font-size: 0.5625rem;
+  }
+
+  .work-stack {
+    font-size: 0.5rem;
   }
 
   .profile-image {

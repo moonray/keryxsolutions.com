@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index.css" />
+    <script src="https://unpkg.com/embla-carousel@8.0.0/embla-carousel.umd.js"></script>
   </head>
 
   <body>
@@ -20,6 +21,7 @@
         <a href="#" class="logo">Keryx Solutions</a>
         <nav>
           <ul>
+            <li><a href="#our-work">Our Work</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#" class="cta-button open-modal">Get in touch</a></li>
@@ -37,6 +39,53 @@
           insights you need, we build solutions that help you reach them with
           confidence.
         </p>
+      </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section id="our-work" class="work-gallery fade-in">
+      <div class="container work-header">
+        <h2 class="headline-large">Our Work.</h2>
+        <p class="body-medium">
+          Trusted by leading organizations to deliver solutions that drive results.
+        </p>
+      </div>
+      <div class="embla work-slider">
+        <div class="embla__viewport">
+          <div class="embla__container work-track">
+            <!-- Work items will be dynamically populated -->
+          </div>
+        </div>
+      </div>
+      <div class="work-paddle-nav">
+        <ul>
+          <li>
+            <button
+              id="work-left"
+              aria-label="Previous item in work gallery"
+              class="paddle-button"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                <path
+                  d="M20 25c-.384 0-.768-.146-1.06-.44l-5.5-5.5a1.5 1.5 0 0 1 0-2.12l5.5-5.5a1.5 1.5 0 1 1 2.12 2.12L16.622 18l4.44 4.44A1.5 1.5 0 0 1 20 25z"
+                ></path>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button
+              id="work-right"
+              aria-label="Next item in work gallery"
+              class="paddle-button"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                <path
+                  d="M22.56 16.938l-5.508-5.5a1.493 1.493 0 0 0-2.116.003 1.502 1.502 0 0 0 .004 2.121L19.384 18l-4.444 4.438A1.502 1.502 0 0 0 15.996 25c.382 0 .764-.145 1.056-.438l5.508-5.5a1.502 1.502 0 0 0 0-2.125z"
+                ></path>
+              </svg>
+            </button>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -268,6 +317,244 @@
         });
       });
 
+      // Shared carousel helper functions
+      function setupCarousel(config) {
+        const {
+          scrollContainer,
+          cardContainer,
+          leftBtn,
+          rightBtn,
+          cardSelector,
+          defaultScrollAmount = 392,
+          infinite = false
+        } = config;
+
+        if (!scrollContainer || !cardContainer || !leftBtn || !rightBtn) {
+          return;
+        }
+
+        let currentIndex = 0;
+        let totalItems = 0;
+        let duplicateCount = 0;
+        let isTransitioning = false;
+
+        // Get duplicate count and total items from the card container
+        if (infinite && cardContainer.dataset.duplicateCount) {
+          duplicateCount = parseInt(cardContainer.dataset.duplicateCount, 10);
+          totalItems = parseInt(cardContainer.dataset.totalItems, 10);
+          currentIndex = duplicateCount; // Start at the first real item
+        }
+
+        // Calculate scroll amount (one card width + gap)
+        const calculateScrollAmount = () => {
+          const cards = cardContainer.querySelectorAll(cardSelector);
+          if (cards.length > 0) {
+            const card = cards[0];
+            const cardWidth = card.offsetWidth;
+            const computedStyle = window.getComputedStyle(cardContainer);
+            const gap =
+              parseInt(computedStyle.getPropertyValue("gap"), 10) || 20;
+            return cardWidth + gap;
+          }
+          return defaultScrollAmount;
+        };
+
+        // Update button states
+        const updateButtonStates = () => {
+          if (infinite) {
+            // For infinite scroll, buttons are never disabled
+            leftBtn.disabled = false;
+            rightBtn.disabled = false;
+          } else {
+            const maxScroll =
+              scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            leftBtn.disabled = scrollContainer.scrollLeft <= 0;
+            rightBtn.disabled =
+              scrollContainer.scrollLeft >= maxScroll - 2; // -2 for rounding errors
+          }
+        };
+
+        // Get current index based on scroll position
+        const getCurrentIndex = () => {
+          const scrollAmount = calculateScrollAmount();
+          return Math.round(scrollContainer.scrollLeft / scrollAmount);
+        };
+
+        // Scroll to specific index
+        const scrollToIndex = (index, smooth = true) => {
+          const scrollAmount = calculateScrollAmount();
+          scrollContainer.scrollTo({
+            left: index * scrollAmount,
+            behavior: smooth ? "smooth" : "auto",
+          });
+          currentIndex = index;
+        };
+
+        // Handle infinite loop by repositioning to maintain buffer on both sides
+        const handleInfiniteLoop = (targetIndex, fromManualScroll = false) => {
+          if (!infinite || isTransitioning) return;
+
+          // If we're at a duplicate at the start, jump to the real item at the end
+          if (targetIndex < duplicateCount) {
+            const realIndex = duplicateCount + totalItems + (targetIndex - duplicateCount);
+
+            if (fromManualScroll) {
+              // Instant jump for manual scroll
+              scrollToIndex(realIndex, false);
+              currentIndex = realIndex;
+            } else {
+              // Delayed jump for button clicks
+              isTransitioning = true;
+              setTimeout(() => {
+                scrollToIndex(realIndex, false);
+                currentIndex = realIndex;
+                isTransitioning = false;
+              }, 500);
+            }
+          }
+          // If we're at a duplicate at the end, jump to the real item at the start
+          else if (targetIndex >= duplicateCount + totalItems) {
+            const realIndex = duplicateCount + (targetIndex - duplicateCount - totalItems);
+
+            if (fromManualScroll) {
+              // Instant jump for manual scroll
+              scrollToIndex(realIndex, false);
+              currentIndex = realIndex;
+            } else {
+              // Delayed jump for button clicks
+              isTransitioning = true;
+              setTimeout(() => {
+                scrollToIndex(realIndex, false);
+                currentIndex = realIndex;
+                isTransitioning = false;
+              }, 500);
+            }
+          }
+        };
+
+        // Scroll left
+        leftBtn.addEventListener("click", () => {
+          if (infinite && !isTransitioning) {
+            currentIndex--;
+            scrollToIndex(currentIndex);
+            handleInfiniteLoop(currentIndex);
+          } else if (!infinite) {
+            const scrollAmount = calculateScrollAmount();
+            scrollContainer.scrollBy({
+              left: -scrollAmount,
+              behavior: "smooth",
+            });
+          }
+          setTimeout(updateButtonStates, 500);
+        });
+
+        // Scroll right
+        rightBtn.addEventListener("click", () => {
+          if (infinite && !isTransitioning) {
+            currentIndex++;
+            scrollToIndex(currentIndex);
+            handleInfiniteLoop(currentIndex);
+          } else if (!infinite) {
+            const scrollAmount = calculateScrollAmount();
+            scrollContainer.scrollBy({
+              left: scrollAmount,
+              behavior: "smooth",
+            });
+          }
+          setTimeout(updateButtonStates, 500);
+        });
+
+        // Handle manual scroll (drag/swipe) for infinite loop
+        let scrollTimeout;
+        let lastScrollIndex = -1;
+        let lastScrollLeft = 0;
+        let scrollDirection = 0; // -1 = left, 1 = right, 0 = unknown
+
+        // Check if a specific card is visible in viewport
+        const isCardVisible = (cardIndex) => {
+          const cards = cardContainer.querySelectorAll(cardSelector);
+          if (!cards[cardIndex]) return false;
+
+          const cardRect = cards[cardIndex].getBoundingClientRect();
+          const containerRect = scrollContainer.getBoundingClientRect();
+
+          // Card is visible if any part overlaps with container
+          return cardRect.left < containerRect.right && cardRect.right > containerRect.left;
+        };
+
+        const handleManualScroll = () => {
+          if (!infinite || isTransitioning) return;
+
+          // Track scroll direction
+          const currentScrollLeft = scrollContainer.scrollLeft;
+          if (currentScrollLeft < lastScrollLeft) {
+            scrollDirection = -1; // Scrolling left/backward
+          } else if (currentScrollLeft > lastScrollLeft) {
+            scrollDirection = 1; // Scrolling right/forward
+          }
+          lastScrollLeft = currentScrollLeft;
+
+          const scrolledIndex = getCurrentIndex();
+
+          // Prevent redundant repositioning
+          if (lastScrollIndex === scrolledIndex) return;
+
+          // Direction-based early repositioning when boundary items become visible
+          // Only reposition if we're close to or in the duplicate zone to avoid premature jumps
+          if (scrollDirection === -1 && scrolledIndex <= duplicateCount + 1 && isCardVisible(duplicateCount)) {
+            // Scrolling backward, close to start, and first real item (index 3) is visible
+            scrollToIndex(duplicateCount + totalItems, false);
+            currentIndex = duplicateCount + totalItems;
+            lastScrollIndex = duplicateCount + totalItems;
+            return;
+          } else if (scrollDirection === 1 && scrolledIndex >= duplicateCount + totalItems - 2 && isCardVisible(duplicateCount + totalItems - 1)) {
+            // Scrolling forward, close to end, and last real item (index 20) is visible
+            scrollToIndex(duplicateCount - 1, false);
+            currentIndex = duplicateCount - 1;
+            lastScrollIndex = duplicateCount - 1;
+            return;
+          }
+
+          // Immediate handling for duplicate zones
+          if (scrolledIndex < duplicateCount || scrolledIndex >= duplicateCount + totalItems) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+              if (getCurrentIndex() === scrolledIndex) {
+                currentIndex = scrolledIndex;
+                handleInfiniteLoop(scrolledIndex, true);
+                lastScrollIndex = scrolledIndex;
+              }
+            }, 200); // Small delay to let scroll snap settle
+            return;
+          }
+
+          lastScrollIndex = scrolledIndex;
+        };
+
+        // Update button states on scroll and resize
+        scrollContainer.addEventListener("scroll", () => {
+          updateButtonStates();
+          handleManualScroll();
+        });
+
+        window.addEventListener("resize", () => {
+          updateButtonStates();
+        });
+
+        // Initial button state
+        updateButtonStates();
+
+        // For infinite scroll, position at the first real item (not the duplicates)
+        if (infinite && duplicateCount > 0) {
+          setTimeout(() => {
+            scrollToIndex(duplicateCount, false);
+          }, 0);
+        }
+
+        // Force a recalculation after a short delay to ensure proper initialization
+        setTimeout(updateButtonStates, 100);
+      }
+
       // Tech cards horizontal scroll functionality
       document.addEventListener("DOMContentLoaded", () => {
         const scrollContainer = document.querySelector(".scroll-container");
@@ -275,68 +562,61 @@
         const scrollLeftBtn = document.getElementById("scroll-left");
         const scrollRightBtn = document.getElementById("scroll-right");
 
-        if (scrollContainer && techGrid && scrollLeftBtn && scrollRightBtn) {
-          // Calculate scroll amount (one card width + gap)
-          const calculateScrollAmount = () => {
-            const cards = techGrid.querySelectorAll(".tech-card");
-            if (cards.length > 0) {
-              const card = cards[0];
-              const cardWidth = card.offsetWidth;
-              const computedStyle = window.getComputedStyle(techGrid);
-              const gap =
-                parseInt(computedStyle.getPropertyValue("gap"), 10) || 20;
-              return cardWidth + gap;
-            }
-            return 392; // Default: 372px card + 20px gap
-          };
-
-          // Update button states
-          const updateButtonStates = () => {
-            const maxScroll =
-              scrollContainer.scrollWidth - scrollContainer.clientWidth;
-            scrollLeftBtn.disabled = scrollContainer.scrollLeft <= 0;
-            scrollRightBtn.disabled =
-              scrollContainer.scrollLeft >= maxScroll - 2; // -2 for rounding errors
-          };
-
-          // Scroll left
-          scrollLeftBtn.addEventListener("click", () => {
-            const scrollAmount = calculateScrollAmount();
-            scrollContainer.scrollBy({
-              left: -scrollAmount,
-              behavior: "smooth",
-            });
-            setTimeout(updateButtonStates, 500); // Update after animation
-          });
-
-          // Scroll right
-          scrollRightBtn.addEventListener("click", () => {
-            const scrollAmount = calculateScrollAmount();
-            scrollContainer.scrollBy({
-              left: scrollAmount,
-              behavior: "smooth",
-            });
-            setTimeout(updateButtonStates, 500); // Update after animation
-          });
-
-          // Update button states on scroll and resize
-          scrollContainer.addEventListener("scroll", updateButtonStates);
-          window.addEventListener("resize", () => {
-            updateButtonStates();
-          });
-
-          // Initial button state
-          updateButtonStates();
-
-          // Force a recalculation after a short delay to ensure proper initialization
-          setTimeout(updateButtonStates, 100);
-        }
+        setupCarousel({
+          scrollContainer,
+          cardContainer: techGrid,
+          leftBtn: scrollLeftBtn,
+          rightBtn: scrollRightBtn,
+          cardSelector: ".tech-card",
+          defaultScrollAmount: 392
+        });
       });
 
       // Add loading animation
       window.addEventListener("load", () => {
         document.body.style.opacity = "1";
       });
+
+      // Render work gallery
+      function renderWorkGallery(items) {
+        const workTrack = document.querySelector(".work-track");
+        if (!workTrack) return;
+
+        const cardsHTML = items.map((item) => `
+          <div class="embla__slide">
+            <article class="work-card" aria-label="${item.project} for ${item.client}">
+              <div class="work-picture">
+                <img src="${item.image}" alt="${item.project}" width="340" height="190" />
+              </div>
+              <div class="work-copy">
+                <h3 class="work-project">${item.project}</h3>
+                <p class="work-client">${item.client}</p>
+                <div class="work-details">
+                  <p class="work-services">${item.services}</p>
+                  <p class="work-stack">${item.stack}</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        `).join("");
+
+        workTrack.innerHTML = cardsHTML;
+      }
+
+      // Load work items from JSON
+      async function loadWorkItems() {
+        try {
+          const response = await fetch('resources/work-items.json');
+          if (!response.ok) {
+            throw new Error('Failed to load work items');
+          }
+          const items = await response.json();
+          return items;
+        } catch (error) {
+          console.error('Error loading work items:', error);
+          return [];
+        }
+      }
 
       // Initialize animations on load
       document.addEventListener("DOMContentLoaded", () => {
@@ -355,6 +635,49 @@
           const imagePath = card.getAttribute("data-image");
           if (imagePath) {
             card.style.backgroundImage = `url('${imagePath}')`;
+          }
+        });
+
+        // Render and setup work gallery
+        loadWorkItems().then((items) => {
+          if (items.length > 0) {
+            renderWorkGallery(items);
+
+            // Initialize Embla Carousel
+            const emblaNode = document.querySelector(".work-slider .embla__viewport");
+            const options = {
+              loop: true,
+              align: 'center',
+              containScroll: 'trimSnaps',
+              slidesToScroll: 1,
+              skipSnaps: false
+            };
+            const emblaApi = EmblaCarousel(emblaNode, options);
+
+            // Hook up navigation buttons
+            const workLeftBtn = document.getElementById("work-left");
+            const workRightBtn = document.getElementById("work-right");
+
+            workLeftBtn.addEventListener("click", () => emblaApi.scrollPrev());
+            workRightBtn.addEventListener("click", () => emblaApi.scrollNext());
+
+            // Auto-show details for active slide (useful for touch devices)
+            const updateActiveSlide = () => {
+              const slides = emblaNode.querySelectorAll('.embla__slide');
+              const selectedIndex = emblaApi.selectedScrollSnap();
+
+              slides.forEach((slide, index) => {
+                if (index === selectedIndex) {
+                  slide.classList.add('embla__slide--active');
+                } else {
+                  slide.classList.remove('embla__slide--active');
+                }
+              });
+            };
+
+            emblaApi.on('select', updateActiveSlide);
+            emblaApi.on('init', updateActiveSlide);
+            updateActiveSlide(); // Initial call
           }
         });
       });
