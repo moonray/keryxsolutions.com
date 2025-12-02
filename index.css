@@ -264,6 +264,12 @@ header:after {
   text-shadow: 1px 1px 24px white;
 }
 
+.logo img {
+  height: 48px;
+  margin: -4px 0;
+  vertical-align: top;
+}
+
 nav ul {
   align-items: center;
   display: flex;
@@ -979,6 +985,11 @@ footer {
 
   .logo {
     font-size: var(--font-size-lg);
+  }
+
+  .logo img {
+    height: 40px;
+    margin: -6px 0;
   }
 
   nav ul {
