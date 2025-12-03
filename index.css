@@ -28,6 +28,8 @@
 
   /* Font size variables */
   --font-size-base: 1.06rem;
+  --font-size-xxxs: 0.5625rem;
+  --font-size-xxs: 0.625rem;
   --font-size-xs: 0.6875rem;
   /* 11px */
   --font-size-sm: 0.75rem;
@@ -66,10 +68,10 @@
   /* 17px */
 
   /* Gallery */
-  --viewport-content: min(980px, 100vw); /* 1024 - 20px padding on both sides */
+  --viewport-content: min(87.5vw, 1024px);
   --gallery-side-padding: round(
     down,
-    calc((100vw - var(--viewport-content)) / 2 + 20px),
+    calc((100vw - var(--viewport-content)) / 2),
     1px
   );
 }
@@ -112,21 +114,21 @@ body {
 
 /* Typography System */
 .headline-large {
-  font-size: var(--font-size-headline-large);
+  font-size: var(--font-size-4xl);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .headline-medium {
-  font-size: var(--font-size-headline-medium);
+  font-size: var(--font-size-2xl);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
 .headline-hero {
-  font-size: var(--font-size-8xl);
+  font-size: var(--font-size-4xl);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -134,14 +136,14 @@ body {
 }
 
 .body-large {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .body-medium {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-secondary);
@@ -165,12 +167,12 @@ body {
 .modal-content {
   position: relative;
   background-color: var(--bg-primary);
-  margin: 2vh auto;
+  margin: 3vh auto;
   padding: 0;
-  width: 96vw;
+  width: 98vw;
   max-width: 800px;
-  max-height: 96vh;
-  border-radius: 16px;
+  max-height: 94vh;
+  border-radius: 12px;
   box-shadow: 0 10px 40px var(--shadow);
   animation: modalFadeIn 0.3s ease;
   overflow: hidden;
@@ -192,15 +194,15 @@ body {
 
 .close-modal {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: var(--font-size-icon);
+  top: 10px;
+  right: 10px;
+  font-size: var(--font-size-lg);
   font-weight: 300;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +237,7 @@ header {
   background: var(--glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 10px 0;
+  padding: 8px 0;
   transition: all 0.3s ease;
 }
 
@@ -257,7 +259,7 @@ header:after {
 }
 
 .logo {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
@@ -265,17 +267,17 @@ header:after {
 }
 
 .logo img {
-  height: 48px;
-  margin: -4px 0;
+  height: 40px;
+  margin: -6px 0;
   vertical-align: top;
 }
 
 nav ul {
   align-items: center;
   display: flex;
-  font-size: var(--font-size-sm);
+  font-size: 0.625rem;
   list-style: none;
-  gap: 2rem;
+  gap: 0.5rem;
 }
 
 nav a {
@@ -298,17 +300,17 @@ nav a:hover {
   align-items: center;
   background: var(--bg-primary);
   display: flex;
-  height: 82vh;
+  height: 550px;
   justify-content: center;
-  min-height: 540px;
+  max-height: 735px;
   overflow: hidden;
-  padding-top: 4rem;
+  padding: 8rem 0 6rem 0;
   position: relative;
   text-align: center;
 }
 
 .hero-content {
-  padding: 0 22px;
+  padding: 0 16px;
   position: relative;
   z-index: 2;
 }
@@ -316,19 +318,19 @@ nav a:hover {
 .hero h1 {
   font-weight: 600;
   line-height: 1.04167;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1rem auto;
   max-width: 700px;
 }
 
 .hero p {
   color: var(--text-tertiary);
-  font-size: var(--font-size-hero-text);
-  font-weight: 600;
+  font-size: var(--font-size-md);
+  font-weight: 500;
   line-height: 1.125;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 53.5294117647rem;
+  max-width: 100%;
 }
 
 .hero::before {
@@ -355,15 +357,15 @@ nav a:hover {
 }
 
 .container {
-  max-width: 1024px;
+  max-width: var(--viewport-content);
   margin: 0 auto;
-  padding: 0 22px;
+  width: 87.5vw;
 }
 
 /* About Section */
 .about {
   background: var(--bg-primary);
-  padding: 0 0 8rem 0;
+  padding: 0 0 1.4rem 0;
 }
 
 .about-hero {
@@ -374,48 +376,55 @@ nav a:hover {
   );
 }
 
+.about-hero .container {
+  position: relative;
+  min-height: 280px;
+}
+
 .profile-content {
   flex: 1.2;
   text-align: left;
 }
 
 .profile-headlines {
-  position: absolute;
-  top: 25%;
+  position: static;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 0 16px;
 }
 
 .profile-image-container {
   flex: 0.8;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .profile-image {
-  background-image: url("resources/bala-profile.png");
-  background-position-x: 400px;
+  background-image: url("resources/bala-profile-small.png");
+  background-position: 50% 100%;
   background-repeat: no-repeat;
-  background-size: 489px 336px;
-  height: 336px;
+  background-size: 292px auto;
+  height: 240px;
   width: 100%;
 }
 
 .profile-name {
   color: var(--text-primary);
-  font-size: var(--font-size-5xl);
+  font-size: var(--font-size-3xl);
   font-weight: 400;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .profile-title {
   color: var(--text-secondary);
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-lg);
   font-weight: 300;
 }
 
 .about-content {
   margin: 2rem 0 0;
-  column-count: 2;
+  column-count: 1;
   column-gap: 2rem;
   text-align: left;
 }
@@ -424,7 +433,7 @@ nav a:hover {
   color: var(--text-secondary);
   font-size: var(--font-size-md);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   break-inside: avoid-column;
 }
 
@@ -435,7 +444,7 @@ nav a:hover {
 /* Tech Showcase */
 .tech-showcase {
   background: var(--bg-primary);
-  padding: 3rem 0;
+  padding: 3rem 0 1.4rem;
   position: relative;
   overflow: hidden;
 }
@@ -448,10 +457,10 @@ nav a:hover {
 }
 
 .tech-header {
-  font-size: 56px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 1.0714285714;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .tech-gallery {
@@ -464,6 +473,8 @@ nav a:hover {
   display: grid;
   overflow-x: scroll;
   padding-block-end: 48px;
+  padding-left: var(--gallery-side-padding);
+  padding-right: var(--gallery-side-padding);
   scroll-padding: var(--gallery-side-padding);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -475,7 +486,6 @@ nav a:hover {
   gap: 20px;
   list-style: none;
   margin: 0;
-  padding: 0 var(--gallery-side-padding);
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -489,8 +499,6 @@ nav a:hover {
   justify-content: flex-end;
   margin-inline-end: auto;
   margin-inline-start: auto;
-  width: var(--viewport-content);
-  padding: 0 22px;
   position: relative;
 }
 
@@ -543,21 +551,21 @@ nav a:hover {
 .tech-card {
   background: var(--bg-contrast);
   border: none;
-  border-radius: 32px;
+  border-radius: 24px;
   height: 100%;
-  min-height: 680px;
-  max-height: 744px;
+  min-height: 480px;
+  max-height: 530px;
   overflow: hidden;
-  padding: 32px;
+  padding: 24px;
   position: relative;
   scroll-snap-align: start;
   text-align: left;
   transition: all 0.3s ease;
-  width: 372px;
+  width: 260px;
 }
 
 .tech-card h3 {
-  font-size: var(--font-size-tech-icon);
+  font-size: var(--font-size-md);
   line-height: 1.2353641176;
   letter-spacing: -0.022em;
   color: var(--text-contrast);
@@ -568,12 +576,12 @@ nav a:hover {
   box-orient: vertical;
   color: var(--text-contrast);
   display: -webkit-box;
-  font-size: var(--font-size-service-icon);
+  font-size: var(--font-size-lg);
   letter-spacing: 0.007em;
   -webkit-line-clamp: 5;
   line-clamp: 5;
   line-height: 1.1428571429;
-  margin-bottom: 423px;
+  margin-bottom: 280px;
   margin-top: 3px;
   overflow: hidden;
   padding-bottom: 4px;
@@ -599,7 +607,7 @@ nav a:hover {
     var(--accent-mint) 50%,
     var(--accent-teal) 100%
   );
-  padding: 10rem 0;
+  padding: 6rem 0;
   color: var(--text-contrast);
   text-align: center;
 }
@@ -610,17 +618,17 @@ nav a:hover {
 }
 
 .value-prop h2 {
-  font-size: var(--font-size-7xl);
+  font-size: var(--font-size-4xl);
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-shadow: 0 2px 20px var(--shadow);
 }
 
 .value-prop p {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-md);
   line-height: 1.7;
   opacity: 0.95;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2rem auto;
   max-width: 760px;
 }
 
@@ -633,10 +641,10 @@ nav a:hover {
   color: var(--accent-navy);
   cursor: pointer;
   display: inline-flex;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   font-weight: 500;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
+  padding: 0.65rem 1.5rem;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -652,10 +660,10 @@ nav a:hover {
 }
 
 header .cta-button {
-  font-size: inherit;
+  font-size: 0.625rem;
   font-weight: 400;
-  padding-block: 3px;
-  padding-inline: 10px;
+  padding-block: 2px;
+  padding-inline: 8px;
 }
 
 header .cta-button:hover {
@@ -668,8 +676,8 @@ header .cta-button:hover {
 footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
-  font-size: 0.7rem;
-  padding: 11px 0 11px 0;
+  font-size: 0.625rem;
+  padding: 10px 0 10px 0;
   text-align: center;
 }
 
@@ -704,13 +712,13 @@ footer {
 /* Work Gallery Section */
 .work-gallery {
   background: var(--bg-secondary);
-  padding: 3rem 0;
+  padding: 3rem 0 1.4rem 0;
   position: relative;
   overflow: hidden;
 }
 
 .work-header {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .eyebrow {
@@ -750,15 +758,15 @@ footer {
 }
 
 .work-card {
-  width: 340px;
+  width: 220px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 .work-picture {
-  width: 340px;
-  height: 190px;
+  width: 220px;
+  height: 124px;
   border-radius: 6px;
   overflow: hidden;
   background: var(--accent-navy);
@@ -779,7 +787,7 @@ footer {
 }
 
 .work-project {
-  font-size: var(--font-size-md);
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.3;
   margin: 0;
@@ -787,7 +795,7 @@ footer {
 }
 
 .work-client {
-  font-size: var(--font-size-sm);
+  font-size: 0.625rem;
   font-weight: 400;
   margin: 0;
   color: var(--text-secondary);
@@ -795,7 +803,7 @@ footer {
 
 .work-details {
   margin-top: 8px;
-  height: 69px;
+  height: 53px;
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
@@ -809,14 +817,14 @@ footer {
 }
 
 .work-services {
-  font-size: var(--font-size-xs);
+  font-size: 0.5625rem;
   line-height: 1.4;
   margin: 0 0 6px 0;
   color: var(--text-secondary);
 }
 
 .work-stack {
-  font-size: 0.625rem;
+  font-size: 0.5rem;
   font-weight: 400;
   margin: 0;
   color: var(--text-tertiary);
@@ -827,8 +835,6 @@ footer {
   justify-content: flex-end;
   margin-inline-end: auto;
   margin-inline-start: auto;
-  width: var(--viewport-content);
-  padding: 0 22px;
   position: relative;
 }
 
@@ -844,31 +850,73 @@ footer {
 
 /* Responsive Design */
 
-/* Tablet (641px - 1023px) */
-@media (max-width: 1023px) and (min-width: 641px) {
-  /* Header adjustments */
-  .logo {
-    font-size: var(--font-size-xl);
-  }
-
-  nav ul {
-    gap: 1.25rem;
-  }
-
-  /* Hero section */
+/* Tablet and up (min-width: 735px) */
+@media (min-width: 735px) {
+  /* Typography adjustments */
   .headline-hero {
     font-size: var(--font-size-6xl);
   }
 
-  .hero p {
-    font-size: var(--font-size-xl);
-    max-width: 90%;
+  .headline-large {
+    font-size: var(--font-size-headline-large);
   }
 
+  .headline-medium {
+    font-size: var(--font-size-headline-medium);
+  }
+
+  .body-large {
+    font-size: var(--font-size-xl);
+  }
+
+  .body-medium {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Header */
+  header {
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: var(--font-size-xl);
+  }
+
+  .logo img {
+    height: 48px;
+    margin: -4px 0;
+  }
+
+  nav ul {
+    gap: 1.25rem;
+    font-size: var(--font-size-sm);
+  }
+
+  header .cta-button {
+    padding-inline: 10px;
+    padding-block: 3px;
+    font-size: inherit;
+  }
+
+  /* Hero section */
   .hero {
-    height: 70vh;
-    min-height: 480px;
-    padding-top: 3rem;
+    height: 500px;
+    padding: 3rem 0 0 0;
+  }
+
+  .hero-content {
+    padding: 0 22px;
+  }
+
+  .hero h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero p {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: 3rem;
+    max-width: 90%;
   }
 
   /* Tech showcase */
@@ -883,11 +931,37 @@ footer {
     max-height: 680px;
   }
 
+  .tech-card h3 {
+    font-size: var(--font-size-tech-icon);
+  }
+
+  .tech-card p {
+    font-size: var(--font-size-service-icon);
+    margin-bottom: 423px;
+  }
+
   /* About section */
+  .about {
+    padding: 0 0 1.4rem 0;
+  }
+
+  .profile-headlines {
+    position: absolute;
+    top: 20%;
+    text-align: left;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .profile-image-container {
+    justify-content: flex-end;
+  }
+
   .profile-image {
-    background-position-x: 320px;
-    background-size: 440px 302px;
-    height: 302px;
+    background-image: url("resources/bala-profile.png");
+    background-position-x: calc(50% + 8rem);
+    background-size: 440px auto;
+    height: 322px;
   }
 
   .profile-name {
@@ -898,21 +972,14 @@ footer {
     font-size: var(--font-size-2xl);
   }
 
-  .profile-headlines {
-    top: 20%;
-  }
-
   .about-content {
-    column-gap: 1.5rem;
+    column-count: 2;
+    column-gap: 4rem;
   }
 
   /* Work gallery */
   .work-gallery {
-    padding: 4rem 0 6rem 0;
-  }
-
-  .work-header {
-    margin-bottom: 3rem;
+    padding: 3rem 0 1.4rem 0;
   }
 
   .work-card {
@@ -936,6 +1003,14 @@ footer {
     height: 57px;
   }
 
+  .work-services {
+    font-size: var(--font-size-xxs);
+  }
+
+  .work-stack {
+    font-size: var(--font-size-xxxs);
+  }
+
   /* Value prop */
   .value-prop {
     padding: 8rem 0;
@@ -948,316 +1023,150 @@ footer {
   .value-prop p {
     font-size: var(--font-size-lg);
   }
-}
-
-/* Mobile (up to 640px) */
-@media (max-width: 640px) {
-  /* Typography adjustments */
-  .headline-hero {
-    font-size: var(--font-size-5xl);
-  }
-
-  .headline-large {
-    font-size: var(--font-size-4xl);
-  }
-
-  .headline-medium {
-    font-size: var(--font-size-2xl);
-  }
-
-  .body-large {
-    font-size: var(--font-size-lg);
-  }
-
-  .body-medium {
-    font-size: var(--font-size-md);
-  }
-
-  /* Container */
-  .container {
-    padding: 0 16px;
-  }
-
-  /* Header */
-  header {
-    padding: 8px 0;
-  }
-
-  .logo {
-    font-size: var(--font-size-lg);
-  }
-
-  .logo img {
-    height: 40px;
-    margin: -6px 0;
-  }
-
-  nav ul {
-    gap: 0.75rem;
-    font-size: 0.625rem;
-  }
-
-  header .cta-button {
-    padding-inline: 8px;
-    padding-block: 2px;
-    font-size: 0.625rem;
-  }
-
-  /* Hero section */
-  .hero {
-    height: auto;
-    min-height: 420px;
-    padding: 8rem 0 6rem 0;
-  }
-
-  .hero-content {
-    padding: 0 16px;
-  }
-
-  .hero h1 {
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    font-size: var(--font-size-lg);
-    font-weight: 500;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-
-  /* Tech showcase */
-  .tech-header {
-    font-size: 32px;
-    margin-bottom: 2rem;
-  }
-
-  .tech-card {
-    width: 350px;
-    min-height: 520px;
-    max-height: 580px;
-    padding: 24px;
-    border-radius: 24px;
-  }
-
-  .tech-card h3 {
-    font-size: var(--font-size-md);
-  }
-
-  .tech-card p {
-    font-size: var(--font-size-lg);
-    margin-bottom: 320px;
-  }
-
-  .paddle-nav {
-    padding: 0 16px;
-  }
-
-  /* About section */
-  .about {
-    padding: 0 0 4rem 0;
-  }
-
-  .about-hero .container {
-    position: relative;
-    min-height: 280px;
-  }
-
-  .profile-image-container {
-    justify-content: center;
-  }
-
-  .profile-image {
-    background-position-x: center;
-    background-position-y: top;
-    background-size: 360px 247px;
-    height: 247px;
-    width: 100%;
-  }
-
-  .profile-headlines {
-    position: static;
-    text-align: center;
-    margin-top: 1.5rem;
-    padding: 0 16px;
-  }
-
-  .profile-name {
-    font-size: var(--font-size-4xl);
-    margin-bottom: 0.25rem;
-  }
-
-  .profile-title {
-    font-size: var(--font-size-xl);
-  }
-
-  .about-content {
-    column-count: 1;
-    margin: 2rem 0 0;
-  }
-
-  .bio-paragraph {
-    margin-bottom: 1.25rem;
-  }
-
-  /* Work gallery */
-  .work-gallery {
-    padding: 3rem 0 4rem 0;
-  }
-
-  .work-header {
-    margin-bottom: 3rem;
-  }
-
-  .work-card {
-    width: 241px;
-  }
-
-  .work-picture {
-    width: 241px;
-    height: 136px;
-    border-radius: 6px;
-  }
-
-  .work-project {
-    font-size: 0.8125rem;
-  }
-
-  .work-client {
-    font-size: 0.6875rem;
-  }
-
-  .work-details {
-    height: 53px;
-  }
-
-  .work-services {
-    font-size: 0.625rem;
-  }
-
-  .work-stack {
-    font-size: 0.5625rem;
-  }
-
-  .work-paddle-nav {
-    padding: 0 16px;
-  }
-
-  /* Value prop */
-  .value-prop {
-    padding: 6rem 0;
-  }
-
-  .value-prop h2 {
-    font-size: var(--font-size-5xl);
-    margin-bottom: 1.5rem;
-  }
-
-  .value-prop p {
-    font-size: var(--font-size-md);
-    margin-bottom: 2rem;
-  }
 
   .cta-button {
-    font-size: var(--font-size-sm);
-    padding: 0.65rem 1.5rem;
+    font-size: var(--font-size-md);
+    padding: 0.75rem 2rem;
   }
 
   /* Footer */
   footer {
-    font-size: 0.625rem;
-    padding: 10px 0;
+    font-size: 0.7rem;
+    padding: 11px 0 11px 0;
   }
 
   /* Modal adjustments */
   .modal-content {
-    width: 98vw;
-    max-height: 94vh;
-    margin: 3vh auto;
-    border-radius: 12px;
+    width: 96vw;
+    max-height: 96vh;
+    margin: 2vh auto;
+    border-radius: 16px;
   }
 
   .close-modal {
-    top: 10px;
-    right: 10px;
-    width: 28px;
-    height: 28px;
-    font-size: var(--font-size-lg);
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-icon);
   }
 }
 
-/* Small mobile (up to 480px) */
-@media (max-width: 480px) {
+/* Desktop and up (min-width: 1068px) */
+@media (min-width: 1068px) {
   .headline-hero {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-8xl);
   }
 
-  .hero p {
-    font-size: var(--font-size-md);
-  }
-
-  .tech-header {
-    font-size: 28px;
-  }
-
-  .tech-card {
-    width: 260px;
-    min-height: 480px;
-    max-height: 530px;
-    padding: 24px;
-  }
-
-  .tech-card p {
-    margin-bottom: 280px;
-  }
-
-  .work-card {
-    width: 220px;
-  }
-
-  .work-picture {
-    width: 220px;
-    height: 124px;
-    border-radius: 6px;
-  }
-
-  .work-project {
-    font-size: 0.75rem;
-  }
-
-  .work-client {
-    font-size: 0.625rem;
-  }
-
-  .work-details {
-    height: 53px;
-  }
-
-  .work-services {
-    font-size: 0.5625rem;
-  }
-
-  .work-stack {
-    font-size: 0.5rem;
-  }
-
-  .profile-image {
-    background-size: 320px 220px;
-    height: 220px;
-  }
-
-  .profile-name {
-    font-size: var(--font-size-3xl);
-  }
-
-  .profile-title {
-    font-size: var(--font-size-lg);
-  }
-
-  .value-prop h2 {
-    font-size: var(--font-size-4xl);
+  .logo {
+    font-size: var(--font-size-2xl);
   }
 
   nav ul {
-    gap: 0.5rem;
+    gap: 2rem;
+  }
+
+  .hero {
+    height: 82vh;
+    min-height: 540px;
+    padding: 4rem 0 0 0;
+  }
+
+  .hero p {
+    font-size: var(--font-size-hero-text);
+    max-width: 53.5294117647rem;
+  }
+
+  .tech-header {
+    font-size: 56px;
+    margin-bottom: 4rem;
+  }
+
+  .tech-card {
+    border-radius: 32px;
+    min-height: 680px;
+    max-height: 744px;
+    padding: 32px;
+    width: 372px;
+  }
+
+  .tech-card h3 {
+    font-size: var(--font-size-tech-icon);
+  }
+
+  .tech-card p {
+    font-size: var(--font-size-service-icon);
+    margin-bottom: 423px;
+  }
+
+  .profile-headlines {
+    top: 25%;
+  }
+
+  .profile-image {
+    background-size: 414px auto;
+    height: 313px;
+  }
+
+  .profile-name {
+    font-size: var(--font-size-5xl);
+  }
+
+  .profile-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .about-content {
+    column-gap: 4rem;
+  }
+
+  .work-gallery {
+    padding: 3rem 0 1.4rem 0;
+  }
+
+  .work-header {
+    margin-bottom: 4rem;
+  }
+
+  .work-card {
+    width: 340px;
+  }
+
+  .work-picture {
+    width: 340px;
+    height: 190px;
+  }
+
+  .work-project {
+    font-size: var(--font-size-md);
+  }
+
+  .work-client {
+    font-size: var(--font-size-sm);
+  }
+
+  .work-details {
+    height: 69px;
+  }
+
+  .work-services {
+    font-size: var(--font-size-xs);
+  }
+
+  .work-stack {
+    font-size: 0.625rem;
+  }
+
+  .value-prop {
+    padding: 10rem 0;
+  }
+
+  .value-prop h2 {
+    font-size: var(--font-size-7xl);
+  }
+
+  .value-prop p {
+    font-size: var(--font-size-xl);
+    margin: 0 auto 3rem auto;
   }
 }
