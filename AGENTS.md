@@ -1,6 +1,6 @@
-# CLAUDE.md
+# GEMINI.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Gemini when working with code in this repository.
 
 ## Project Overview
 
@@ -9,8 +9,9 @@ This is a static marketing website for Keryx Solutions built with vanilla HTML, 
 ## Architecture
 
 ### Structure
-- **index.html**: Single HTML file containing all page structure and inline JavaScript
+- **index.html**: Single HTML file containing page structure and loading external resources
 - **index.css**: All styling with CSS custom properties for theming and responsive breakpoints
+- **main.js**: Contains all client-side logic, event listeners, and dynamic content rendering
 - **resources/**: Image assets for profile, service cards, and data files
   - **work-items.json**: Portfolio data for Our Work gallery (see Data Files section below)
 - **../keryxsolutions/docs/**: Documentation stored in parent directory
@@ -28,25 +29,19 @@ This is a static marketing website for Keryx Solutions built with vanilla HTML, 
 - Intersection Observer-based fade-in animations
 
 **Our Work Gallery**
-- Apple-esque horizontal scrolling portfolio showcase with 16:10 aspect ratio cards (1280:800)
-- Data loaded from `resources/work-items.json` via fetch API (index.html:489-501)
-- Images stored in `resources/` directory for self-contained deployment
-- Infinite scrolling carousel: navigating past last item loops to first, and vice versa
-- **Centered card view**: Current card centered with previous/next cards partially visible on sides
-- Snap scrolling (`scroll-snap-align: center`) with paddle navigation controls (buttons never disabled)
-- Dynamic padding: `calc((100vw - cardWidth) / 2)` centers cards and shows adjacent cards
-- Card layout: title/client positioned top-left, services/stack positioned bottom-left
-- Cards feature background images from resources/, gradient overlays for text legibility
-- Reuses shared setupCarousel helper with `infinite: true` parameter
-- Content data sourced from work-items.json (originally from ../keryxsolutions/docs/work-*.md)
-- Card dimensions maintain 1.6:1 ratio across breakpoints:
-  - Desktop: 800px × 500px
-  - Tablet: 640px × 400px
-  - Mobile: 360px × 225px
-  - Small mobile: 320px × 200px
+- **Powered by Embla Carousel**: Robust, touch-enabled carousel with infinite looping (`loop: true`)
+- Data loaded from `resources/work-items.json` via fetch API in `main.js`
+- Images stored in `resources/` directory
+- **Carousel Features**:
+  - Smooth alignment (`align: "center"`) and snapping (`containScroll: "trimSnaps"`)
+  - Mouse wheel navigation support with smooth momentum scrolling
+  - Paddle navigation buttons (prev/next)
+- **Dynamic Rendering**: JavaScript generates card markup with standard `embla__slide` structure
+- Cards feature project image, title, client, services, and stack details
+- Card dimensions and layout handled via CSS within the Embla slides
 
 **Tech Showcase (Services)**
-- Horizontal scrolling gallery with snap points
+- Horizontal scrolling gallery using custom JavaScript implementation (`setupCarousel`)
 - Paddle navigation buttons (prev/next) with disabled state management
 - Cards with background images loaded via data-image attributes
 - Custom scrollbar styling and scroll container padding
@@ -63,13 +58,14 @@ This is a static marketing website for Keryx Solutions built with vanilla HTML, 
 
 ### JavaScript Functionality
 
-All JavaScript is inline in index.html:
+All JavaScript logic is located in `main.js`:
 
 1. **Intersection Observer**: Triggers fade-in animations when elements enter viewport
 2. **Smooth Scrolling**: Anchor link navigation with nav height offset
-3. **Horizontal Scroll Gallery**: Card-by-card scrolling with button state management
-4. **Modal System**: Open/close handlers with body scroll lock
-5. **Dynamic Backgrounds**: Sets card background images from data-image attributes on page load
+3. **Services Gallery**: Custom horizontal scroll logic with button state management
+4. **Work Gallery**: Embla Carousel initialization, data fetching, and rendering
+5. **Modal System**: Open/close handlers with body scroll lock
+6. **Dynamic Backgrounds**: Sets card background images from data-image attributes on page load
 
 ## Styling System
 
@@ -134,22 +130,20 @@ npx http-server
 ```
 
 ### No Build Process
-This is a static site with no dependencies or build step. Changes to index.html or index.css are immediately reflected on refresh.
+This is a static site with no dependencies or build step. Changes to index.html, index.css, or main.js are immediately reflected on refresh.
 
 ### Git Workflow
 The repository uses standard git with a main branch. CNAME file exists for custom domain hosting.
 
 ## Implementation Patterns
 
-**Modal Integration**: The appointment modal uses Google Calendar's embeddable appointment scheduling. To update the calendar link, modify the iframe src at index.html:224.
+**Modal Integration**: The appointment modal uses Google Calendar's embeddable appointment scheduling. To update the calendar link, modify the iframe src at index.html.
 
-**Shared Carousel System**: Both the Tech Showcase and Our Work galleries use a shared `setupCarousel()` helper function (index.html:319-442) that handles scroll amount calculation, paddle button states, and smooth scrolling. This function accepts a config object with scrollContainer, cardContainer, leftBtn, rightBtn, cardSelector, defaultScrollAmount, and optional `infinite` boolean. When `infinite: true`, the carousel loops from last to first and first to last, and paddle buttons are never disabled. This pattern avoids code duplication while keeping each gallery's selectors scoped.
+**Carousel Implementations**:
+- **Work Gallery**: Uses [Embla Carousel](https://www.embla-carousel.com/) for a robust, touch-friendly infinite slider. Logic in `initWorkGallery` (main.js).
+- **Services Gallery**: Uses a lightweight custom implementation (`setupCarousel` in main.js) that handles simple horizontal scrolling with snap points and button states.
 
-**Our Work Gallery - Data Loading**: Portfolio data is stored in `resources/work-items.json` and loaded asynchronously via the `loadWorkItems()` function (index.html:489-501). Each item includes id, project, client, services, stack, and image path. The `renderWorkGallery()` function (index.html:467-486) generates card markup with separate top and bottom content containers for precise positioning. Cards maintain 16:10 aspect ratio (800×500px desktop) and use stronger gradient overlays on mobile for text readability.
-
-**Infinite Scrolling Pattern**: The work gallery implements infinite scrolling by tracking the current index and total items. When the user clicks "previous" on the first item, it jumps to the last item; clicking "next" on the last item jumps to the first. This is handled entirely in JavaScript without DOM manipulation—the `scrollToIndex()` function calculates the scroll position based on card width + gap. The services carousel does not use infinite scrolling (infinite: false by default).
-
-**Tech Showcase Gallery**: Uses CSS scroll-snap-type with JavaScript paddle buttons. Card width (372px) + gap (20px) = 392px scroll amount. Gallery side padding is calculated based on viewport width to center content.
+**Our Work Gallery - Data Loading**: Portfolio data is stored in `resources/work-items.json` and loaded asynchronously via `loadWorkItems()` in `main.js`. The `renderWorkGallery()` function generates the slide markup needed for Embla Carousel.
 
 **Animation System**: Elements with `.fade-in` class are observed via IntersectionObserver. When visible, `.visible` class is added triggering CSS transitions. Stagger classes (`.stagger-1`, `.stagger-2`, `.stagger-3`) add progressive delays.
 
