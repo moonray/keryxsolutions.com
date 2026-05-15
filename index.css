@@ -69,10 +69,9 @@
 
   /* Gallery */
   --viewport-content: min(87.5vw, 1024px);
-  --gallery-side-padding: round(
-    down,
-    calc((100vw - var(--viewport-content)) / 2),
-    1px
+  --gallery-side-padding: max(
+    0px,
+    calc((100vw - var(--viewport-content)) / 2)
   );
 }
 
@@ -147,6 +146,27 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.inline-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  text-decoration: underline;
 }
 
 /* Modal Styles */
@@ -225,6 +245,24 @@ body {
 
 body.modal-open {
   overflow: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  transform: translateY(-150%);
+  background: var(--accent-navy);
+  color: var(--text-contrast);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  z-index: 3000;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(16px);
 }
 
 /* Header */
@@ -352,7 +390,7 @@ nav a:hover {
 
 /* Section Layouts */
 .section {
-  padding: 8rem 0;
+  padding: 4rem 0;
   position: relative;
 }
 
@@ -360,6 +398,113 @@ nav a:hover {
   max-width: var(--viewport-content);
   margin: 0 auto;
   width: 87.5vw;
+}
+
+.section-copy {
+  color: var(--text-secondary);
+  margin-top: 0;
+  max-width: 760px;
+}
+
+.section-header {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-intro {
+  background: linear-gradient(180deg, #05070f 0%, #0e1326 100%);
+  padding: 4rem 0;
+}
+
+.section-intro .headline-large {
+  color: var(--text-contrast);
+}
+
+.section-intro .section-copy {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.expertise-header {
+  margin-bottom: 1.5rem;
+}
+
+.expertise-showcase {
+  display: grid;
+  gap: 1rem;
+}
+
+.expertise-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  border-radius: 28px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 20px 60px rgba(14, 19, 38, 0.1);
+  background-color: var(--accent-navy);
+  background-size: cover;
+  background-position: center;
+  color: var(--text-contrast);
+}
+
+.expertise-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 19, 38, 0.08) 0%, rgba(14, 19, 38, 0.78) 72%, rgba(14, 19, 38, 0.92) 100%);
+  pointer-events: none;
+}
+
+.expertise-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.expertise-card--primary {
+  background-image: url("resources/architecture-modernization.jpg");
+}
+
+.expertise-card--dark {
+  background-image: url("resources/ai-applied-carefully.jpg");
+}
+
+.expertise-card--soft {
+  background-image: url("resources/product-engineering.jpg");
+}
+
+.expertise-card--accent {
+  background-image: url("resources/technical-leadership.jpg");
+}
+
+.expertise-label {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  line-height: 1.25;
+  opacity: 0.96;
+}
+
+.expertise-card h3 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  max-width: 13ch;
+  text-shadow: 0 8px 24px rgba(14, 19, 38, 0.38);
+}
+
+.expertise-card p {
+  margin-top: 1rem;
+  max-width: 32rem;
+  font-size: var(--font-size-md);
+  line-height: 1.55;
+  opacity: 0.96;
+  text-shadow: 0 4px 18px rgba(14, 19, 38, 0.38);
 }
 
 /* About Section */
@@ -444,9 +589,13 @@ nav a:hover {
 /* Tech Showcase */
 .tech-showcase {
   background: var(--bg-primary);
-  padding: 3rem 0 1.4rem;
+  padding: 4rem 0 3rem;
   position: relative;
   overflow: hidden;
+}
+
+.services-header-block {
+  margin-bottom: 1.5rem;
 }
 
 .scroll-container {
@@ -460,7 +609,7 @@ nav a:hover {
   font-size: 28px;
   font-weight: 500;
   line-height: 1.0714285714;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .tech-gallery {
@@ -490,7 +639,7 @@ nav a:hover {
   width: fit-content;
 }
 
-.tech-grid::-webkit-scrollbar {
+.scroll-container::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
@@ -599,6 +748,60 @@ nav a:hover {
   text-shadow: 0px 0px 12px var(--accent-navy);
 }
 
+/* FAQ Section */
+.faq-section {
+  background: var(--bg-secondary);
+  padding: 4rem 0;
+}
+
+.faq-list {
+  margin-top: 2rem;
+  max-width: 900px;
+}
+
+.faq-item {
+  padding: 1.35rem 0;
+}
+
+.faq-item summary {
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  list-style: none;
+  padding-right: 2rem;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  color: var(--text-secondary);
+  content: "+";
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1;
+  position: absolute;
+  right: 0;
+  top: 0.1em;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+  line-height: 1.65;
+  margin-top: 0.85rem;
+  max-width: 52rem;
+}
+
 /* Value Proposition Section */
 .value-prop {
   background: linear-gradient(
@@ -677,12 +880,29 @@ footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
   font-size: 0.625rem;
-  padding: 10px 0 10px 0;
+  padding: 14px 0;
   text-align: center;
 }
 
 .footer-content {
   color: var(--text-tertiary);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.65rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
 }
 
 /* Animations */
@@ -712,9 +932,17 @@ footer {
 /* Work Gallery Section */
 .work-gallery {
   background: var(--bg-secondary);
-  padding: 3rem 0 1.4rem 0;
+  padding: 4rem 0 3rem 0;
   position: relative;
   overflow: hidden;
+}
+
+.work-summary {
+  margin-top: 0.75rem;
+}
+
+.noscript-note {
+  margin-bottom: 1rem;
 }
 
 .work-header {
@@ -739,8 +967,18 @@ footer {
 }
 
 .embla__viewport {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.work-slider .embla__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.work-slider--ready .embla__viewport {
+  overflow: hidden;
 }
 
 .embla__container {
@@ -762,6 +1000,15 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.work-copy {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .work-picture {
@@ -904,6 +1151,14 @@ footer {
     padding: 3rem 0 0 0;
   }
 
+  .section {
+    padding: 5rem 0;
+  }
+
+  .section-intro {
+    padding: 5rem 0;
+  }
+
   .hero-content {
     padding: 0 22px;
   }
@@ -919,10 +1174,37 @@ footer {
     max-width: 90%;
   }
 
+  .expertise-showcase {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .expertise-card {
+    min-height: 320px;
+    padding: 2rem;
+  }
+
+  .expertise-card--primary,
+  .expertise-card--accent {
+    grid-column: span 7;
+  }
+
+  .expertise-card--dark,
+  .expertise-card--soft {
+    grid-column: span 5;
+  }
+
+  .expertise-header .section-copy {
+    max-width: 58rem;
+  }
+
+  .faq-list {
+    max-width: 980px;
+  }
+
   /* Tech showcase */
   .tech-header {
     font-size: 40px;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
   }
 
   .tech-card {
@@ -979,7 +1261,7 @@ footer {
 
   /* Work gallery */
   .work-gallery {
-    padding: 3rem 0 1.4rem 0;
+    padding: 4rem 0 3rem 0;
   }
 
   .work-card {
@@ -1011,6 +1293,10 @@ footer {
     font-size: var(--font-size-xxxs);
   }
 
+  .services-header-block {
+    margin-bottom: 2rem;
+  }
+
   /* Value prop */
   .value-prop {
     padding: 8rem 0;
@@ -1032,7 +1318,7 @@ footer {
   /* Footer */
   footer {
     font-size: 0.7rem;
-    padding: 11px 0 11px 0;
+    padding: 14px 0;
   }
 
   /* Modal adjustments */
@@ -1079,7 +1365,17 @@ footer {
 
   .tech-header {
     font-size: 56px;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
+  }
+
+  .expertise-card {
+    min-height: 360px;
+    border-radius: 32px;
+    padding: 2.25rem;
+  }
+
+  .expertise-card h3 {
+    max-width: 12ch;
   }
 
   .tech-card {
@@ -1121,7 +1417,7 @@ footer {
   }
 
   .work-gallery {
-    padding: 3rem 0 1.4rem 0;
+    padding: 4rem 0 3rem 0;
   }
 
   .work-header {

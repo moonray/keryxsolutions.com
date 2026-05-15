@@ -17,18 +17,21 @@
   }
 
   function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((anchor) => {
       anchor.addEventListener("click", function (event) {
+        const selector = this.getAttribute("href");
+        if (!selector) return;
+
+        const target = document.querySelector(selector);
+        if (!target) return;
+
         event.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-          const navHeight = document.querySelector("nav").offsetHeight;
-          const targetPosition = target.offsetTop - navHeight;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
-        }
+        const headerHeight = document.querySelector("header")?.offsetHeight || 0;
+        const targetPosition = target.offsetTop - headerHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
       });
     });
   }
@@ -277,141 +280,96 @@
     });
   }
 
-  function renderWorkGallery(items) {
-    const workTrack = document.querySelector(".work-track");
-    if (!workTrack) return;
-
-    const cardsHTML = items
-      .map(
-        (item) => `
-          <div class="embla__slide">
-            <article class="work-card" aria-label="${item.project} for ${item.client}">
-              <div class="work-picture">
-                <img src="${item.image}" alt="${item.project}" width="340" height="190" />
-              </div>
-              <div class="work-copy">
-                <h3 class="work-project">${item.project}</h3>
-                <p class="work-client">${item.client}</p>
-                <div class="work-details">
-                  <p class="work-services">${item.services}</p>
-                  <p class="work-stack">${item.stack}</p>
-                </div>
-              </div>
-            </article>
-          </div>
-        `
-      )
-      .join("");
-
-    workTrack.innerHTML = cardsHTML;
-  }
-
-  async function loadWorkItems() {
-    try {
-      const response = await fetch("resources/work-items.json");
-      if (!response.ok) {
-        throw new Error("Failed to load work items");
-      }
-      const items = await response.json();
-      return items;
-    } catch (error) {
-      console.error("Error loading work items:", error);
-      return [];
-    }
-  }
-
   function initWorkGallery() {
-    loadWorkItems().then((items) => {
-      if (!items.length) return;
+    const workSlider = document.querySelector(".work-slider");
+    const emblaNode = document.querySelector(".work-slider .embla__viewport");
+    const slides = document.querySelectorAll(".work-slider .embla__slide");
 
-      renderWorkGallery(items);
+    if (!emblaNode || !slides.length || typeof EmblaCarousel !== "function") return;
 
-      const emblaNode = document.querySelector(".work-slider .embla__viewport");
-      if (!emblaNode || typeof EmblaCarousel !== "function") return;
+    const options = {
+      loop: true,
+      align: "center",
+      containScroll: "trimSnaps",
+      slidesToScroll: 1,
+      skipSnaps: false,
+    };
+    const emblaApi = EmblaCarousel(emblaNode, options);
+    workSlider?.classList.add("work-slider--ready");
 
-      const options = {
-        loop: true,
-        align: "center",
-        containScroll: "trimSnaps",
-        slidesToScroll: 1,
-        skipSnaps: false,
-      };
-      const emblaApi = EmblaCarousel(emblaNode, options);
+    const workLeftBtn = document.getElementById("work-left");
+    const workRightBtn = document.getElementById("work-right");
 
-      const workLeftBtn = document.getElementById("work-left");
-      const workRightBtn = document.getElementById("work-right");
+    workLeftBtn?.addEventListener("click", () => emblaApi.scrollPrev());
+    workRightBtn?.addEventListener("click", () => emblaApi.scrollNext());
 
-      workLeftBtn?.addEventListener("click", () => emblaApi.scrollPrev());
-      workRightBtn?.addEventListener("click", () => emblaApi.scrollNext());
+    const updateActiveSlide = () => {
+      const currentSlides = emblaNode.querySelectorAll(".embla__slide");
+      const selectedIndex = emblaApi.selectedScrollSnap();
 
-      const updateActiveSlide = () => {
-        const slides = emblaNode.querySelectorAll(".embla__slide");
-        const selectedIndex = emblaApi.selectedScrollSnap();
+      currentSlides.forEach((slide, index) => {
+        if (index === selectedIndex) {
+          slide.classList.add("embla__slide--active");
+        } else {
+          slide.classList.remove("embla__slide--active");
+        }
+      });
+    };
 
-        slides.forEach((slide, index) => {
-          if (index === selectedIndex) {
-            slide.classList.add("embla__slide--active");
-          } else {
-            slide.classList.remove("embla__slide--active");
-          }
-        });
-      };
+    emblaApi.on("select", updateActiveSlide);
+    emblaApi.on("init", updateActiveSlide);
+    updateActiveSlide();
 
-      emblaApi.on("select", updateActiveSlide);
-      emblaApi.on("init", updateActiveSlide);
-      updateActiveSlide();
+    let scrollAccumulator = 0;
+    let isScrolling = false;
+    let scrollDirection = 0;
 
-      let scrollAccumulator = 0;
-      let isScrolling = false;
-      let scrollDirection = 0;
+    emblaNode.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+          event.preventDefault();
 
-      emblaNode.addEventListener(
-        "wheel",
-        (event) => {
-          if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-            event.preventDefault();
+          scrollDirection = event.deltaX > 0 ? 1 : -1;
+          scrollAccumulator += event.deltaX;
 
-            scrollDirection = event.deltaX > 0 ? 1 : -1;
-            scrollAccumulator += event.deltaX;
+          if (!isScrolling) {
+            isScrolling = true;
+            requestAnimationFrame(function scrollStep() {
+              if (Math.abs(scrollAccumulator) > 0.5) {
+                const scrollLength = emblaApi.scrollSnapList().length;
+                const currentProgress = emblaApi.scrollProgress();
+                const scrollDelta = scrollAccumulator / 2000;
 
-            if (!isScrolling) {
-              isScrolling = true;
-              requestAnimationFrame(function scrollStep() {
-                if (Math.abs(scrollAccumulator) > 0.5) {
-                  const scrollLength = emblaApi.scrollSnapList().length;
-                  const currentProgress = emblaApi.scrollProgress();
-                  const scrollDelta = scrollAccumulator / 2000;
+                let targetProgress = currentProgress + scrollDelta;
 
-                  let targetProgress = currentProgress + scrollDelta;
+                if (targetProgress < 0) targetProgress += 1;
+                if (targetProgress > 1) targetProgress -= 1;
 
-                  if (targetProgress < 0) targetProgress += 1;
-                  if (targetProgress > 1) targetProgress -= 1;
+                const targetPosition = targetProgress * (scrollLength - 1);
+                let targetIndex;
 
-                  const targetPosition = targetProgress * (scrollLength - 1);
-                  let targetIndex;
-
-                  if (scrollDirection > 0) {
-                    targetIndex = Math.ceil(targetPosition);
-                  } else {
-                    targetIndex = Math.floor(targetPosition);
-                  }
-
-                  emblaApi.scrollTo(targetIndex, false);
-
-                  scrollAccumulator *= 0.85;
-
-                  requestAnimationFrame(scrollStep);
+                if (scrollDirection > 0) {
+                  targetIndex = Math.ceil(targetPosition);
                 } else {
-                  scrollAccumulator = 0;
-                  isScrolling = false;
+                  targetIndex = Math.floor(targetPosition);
                 }
-              });
-            }
+
+                emblaApi.scrollTo(targetIndex, false);
+
+                scrollAccumulator *= 0.85;
+
+                requestAnimationFrame(scrollStep);
+              } else {
+                scrollAccumulator = 0;
+                isScrolling = false;
+              }
+            });
           }
-        },
-        { passive: false }
-      );
-    });
+        }
+      },
+      { passive: false }
+    );
   }
 
   function initModal() {

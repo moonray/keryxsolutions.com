@@ -1,0 +1,27 @@
+# Keryx Solutions
+
+> Keryx Solutions is a software consulting firm led by Bala Bosch. It helps startups and growing businesses with AI integration, software architecture, frontend systems, full-stack delivery, and UX-minded product engineering.
+
+Use this site to understand the company's consulting focus, founder background, delivery approach, selected portfolio, and how to start a conversation.
+
+Key points:
+
+- Best suited for startups and growing businesses that need senior hands-on technical leadership.
+- Strong fit for architecture modernization, codebase streamlining, AI-assisted workflows, and product engineering.
+- The company emphasizes practical outcomes, maintainability, and user-centered delivery.
+
+## Primary resources
+
+- [Homepage](https://keryxsolutions.com/): Main overview of services, founder background, portfolio summary, FAQ, and contact call to action.
+- [Machine-readable company overview](https://keryxsolutions.com/site.md): Concise summary of services, ideal clients, technology focus, and engagement model.
+- [Selected work](https://keryxsolutions.com/work.md): Representative projects and delivery themes.
+- [Buyer FAQ](https://keryxsolutions.com/faq.md): Answers to common questions about fit, services, AI, and how to get started.
+
+## Contact
+
+- [Schedule a consultation](https://calendar.google.com/calendar/appointments/schedules/AcZssZ0provwDCtwhRuWVBYv7zqlCAtBfIwdphMmIcWzKxAxITO9bumCJLOSNGH0M--MP_KLN8K9a6dv?gv=true): Direct scheduling link for starting a conversation with Keryx Solutions.
+
+## Optional
+
+- [Keryx Solutions Substack](https://keryxsolutions.substack.com/): Writing about AI, architecture, and delivery.
+- [LinkedIn company page](https://www.linkedin.com/company/keryxsolutions/): Company presence and updates.
