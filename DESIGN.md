@@ -230,6 +230,60 @@ When adding or changing work items:
 2. run `scripts/sync-work-content.mjs`
 3. review the diff in `index.html` and `work.md`
 
+## Reusable components
+
+### Device frame (`.ipad-chassis`)
+
+A realistic iPad frame with silver aluminum chassis, black glass bezel, camera dot, and screen glare. Apply the nested HTML structure to any image.
+
+Usage (landscape, default):
+```html
+<div class="ipad-chassis">
+  <div class="ipad-bezel">
+    <div class="ipad-camera"></div>
+    <div class="ipad-screen">
+      <img src="..." alt="..." />
+    </div>
+  </div>
+</div>
+```
+
+Portrait orientation:
+```html
+<div class="ipad-chassis ipad-chassis--portrait">
+  <div class="ipad-bezel">
+    <div class="ipad-camera"></div>
+    <div class="ipad-screen">
+      <img src="..." alt="..." />
+    </div>
+  </div>
+</div>
+```
+
+Placeholder (no image yet):
+```html
+<div class="ipad-chassis">
+  <div class="ipad-bezel">
+    <div class="ipad-camera"></div>
+    <div class="ipad-screen ipad-screen--placeholder">
+      <span>Label</span>
+    </div>
+  </div>
+</div>
+```
+
+Visual spec:
+- 3-layer structure: silver chassis rim → black glass bezel → screen
+- **All dimensions use percentages** so the frame stays proportional at any size
+- Chassis: silver/gray gradient simulating CNC aluminum, 2px rim, 6% border-radius
+- Bezel: deep black (#08090a), 5% padding, 5.5% border-radius
+- Camera: dark dot (1.5% width) positioned at top 22%, with lens detail via `::after`
+- Screen: 2% border-radius, subtle glare overlay via `::after` gradient
+- Landscape default (4:3), portrait via `--portrait` modifier (3:4)
+- `--half` variant: clips bottom half, flattens bottom border-radius at all 3 layers
+- No breakpoint-specific iPad overrides needed — percentages scale automatically
+- White card backgrounds, never dark (Our Work section is neutral/light)
+
 ## Anti-patterns to avoid
 
 - adding new decorative eyebrow text everywhere

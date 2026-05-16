@@ -1,6 +1,6 @@
 # Keryx Solutions
 
-> Keryx Solutions is a software consulting firm led by Bala Bosch. It helps startups and growing businesses with AI integration, software architecture, frontend systems, full-stack delivery, and UX-minded product engineering.
+> Keryx Solutions is a software consulting firm led by Bala Bosch. It builds custom software, AI-powered tools, and scalable architectures for startups and growing businesses that need reliable, expertly engineered solutions.
 
 Use this site to understand the company's consulting focus, founder background, delivery approach, selected portfolio, and how to start a conversation.
 

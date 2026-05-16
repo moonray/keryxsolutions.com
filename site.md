@@ -1,6 +1,6 @@
 # Keryx Solutions
 
-> Keryx Solutions helps startups and growing businesses with AI integration, software architecture, frontend systems, and full-stack product delivery.
+> Keryx Solutions builds custom software, AI-powered tools, and scalable architectures for startups and growing businesses that need reliable, expertly engineered solutions.
 
 ## Who this is for
 

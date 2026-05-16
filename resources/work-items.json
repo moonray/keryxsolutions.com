@@ -16,6 +16,14 @@
     "image": "resources/espritcreations.jpg"
   },
   {
+    "id": "fwl",
+    "project": "Florida Wholesale Liqidation",
+    "client": "Florida Wholesale Liqidation",
+    "services": "Custom development, Migration, Integration, Ongoing support",
+    "stack": "Tech stack: Wordpress, WooCommerce, PHP, Lightspeed POS & eCommerce, Javascript",
+    "image": "resources/fwl.jpg"
+  },
+  {
     "id": "feathr",
     "project": "Digital Marketing Platform",
     "client": "Feathr",
