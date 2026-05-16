@@ -274,14 +274,15 @@ Placeholder (no image yet):
 
 Visual spec:
 - 3-layer structure: silver chassis rim → black glass bezel → screen
-- **All dimensions use percentages** so the frame stays proportional at any size
-- Chassis: silver/gray gradient simulating CNC aluminum, 2px rim, 6% border-radius
-- Bezel: deep black (#08090a), 5% padding, 5.5% border-radius
-- Camera: dark dot (1.5% width) positioned at top 22%, with lens detail via `::after`
-- Screen: 2% border-radius, subtle glare overlay via `::after` gradient
-- Landscape default (4:3), portrait via `--portrait` modifier (3:4)
-- `--half` variant: clips bottom half, flattens bottom border-radius at all 3 layers
-- No breakpoint-specific iPad overrides needed — percentages scale automatically
+- Match the **11-inch iPad Pro (M4)** proportions, not a generic 4:3 tablet
+- Landscape chassis aspect ratio: `249.7 / 177.5`; portrait: `177.5 / 249.7`
+- Outer chassis radius: **19 mm** (`7.61% / 10.70%` in landscape, flipped in portrait)
+- Total inset from chassis edge to screen edge: **7.12 mm** (`2.85%` in landscape, `4.01%` in portrait), split between a thin silver rim and the black bezel
+- Screen radius: **12 mm** (`5.10% / 7.35%` in landscape, flipped in portrait)
+- Camera: dark dot centered on the top bezel with lens detail via `::after`
+- Screen keeps the subtle glare overlay via `::after`
+- `--half` variant clips the lower half for the featured-work cards while preserving the full device geometry
+- No breakpoint-specific iPad overrides needed — the ratios should scale proportionally
 - White card backgrounds, never dark (Our Work section is neutral/light)
 
 ## Anti-patterns to avoid

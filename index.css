@@ -1145,22 +1145,46 @@ footer {
 }
 
 .ipad-chassis {
+  /* 11-inch iPad Pro (M4), landscape orientation */
+  --ipad-total-inset: 2.45%;
+  --ipad-rim-thickness: 0.22%;
+  --ipad-bezel-inset: calc(var(--ipad-total-inset) - var(--ipad-rim-thickness));
+  --ipad-outer-radius-x: 4.90%;
+  --ipad-outer-radius-y: 7.00%;
+  --ipad-screen-radius-x: 1.80%;
+  --ipad-screen-radius-y: 2.70%;
+  --ipad-half-hidden-height: 35.54%;
+
   position: relative;
-  padding: 3px;
-  background: linear-gradient(135deg, #ffffff 0%, #a3b1c6 30%, #5e6b7c 70%, #e2e8f0 100%);
-  border-radius: 7%;
+  isolation: isolate;
+  padding: var(--ipad-rim-thickness);
+  background: transparent;
+  border-radius: var(--ipad-outer-radius-x) / var(--ipad-outer-radius-y);
   box-shadow:
     0 20px 50px -10px rgba(15, 23, 42, 0.3),
-    0 8px 20px -8px rgba(15, 23, 42, 0.18),
-    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    0 8px 20px -8px rgba(15, 23, 42, 0.18);
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 249.7 / 177.5;
+}
+
+.ipad-chassis::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #a3b1c6 30%, #5e6b7c 70%, #e2e8f0 100%);
+  border-radius: inherit;
+  clip-path: url(#ipad-squircle-outer);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .ipad-bezel {
   background: #08090a;
-  padding: 5%;
-  border-radius: 5.5%;
+  padding: var(--ipad-bezel-inset);
+  border-radius: var(--ipad-outer-radius-x) / var(--ipad-outer-radius-y);
+  clip-path: url(#ipad-squircle-outer);
+  overflow: hidden;
   position: relative;
   width: 100%;
   height: 100%;
@@ -1168,30 +1192,31 @@ footer {
   box-shadow:
     inset 0 3px 5px -1px rgba(0, 0, 0, 0.8),
     inset 0 1px 2px rgba(0, 0, 0, 0.9);
+  z-index: 1;
 }
 
 .ipad-camera {
   position: absolute;
-  top: 22%;
+  top: max(2px, calc(var(--ipad-bezel-inset) * 0.18));
   left: 50%;
   transform: translateX(-50%);
-  width: 1.5%;
-  aspect-ratio: 1;
+  width: 7px;
+  height: 7px;
   background: #040814;
   border-radius: 50%;
   box-shadow:
     inset 0 1px 1px rgba(0,0,0,0.9),
     0 0 1px rgba(255,255,255,0.2);
-  z-index: 2;
+  z-index: 3;
 }
 
 .ipad-camera::after {
   content: "";
   position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
   background: #0f1c3f;
   border-radius: 50%;
 }
@@ -1200,7 +1225,8 @@ footer {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 2%;
+  border-radius: var(--ipad-screen-radius-x) / var(--ipad-screen-radius-y);
+  clip-path: url(#ipad-squircle-inner);
   overflow: hidden;
   background: #000;
   box-shadow:
@@ -1232,23 +1258,35 @@ footer {
 }
 
 .ipad-chassis--portrait {
-  aspect-ratio: 3 / 4;
+  --ipad-total-inset: 3.45%;
+  --ipad-rim-thickness: 0.30%;
+  --ipad-bezel-inset: calc(var(--ipad-total-inset) - var(--ipad-rim-thickness));
+  --ipad-outer-radius-x: 7.00%;
+  --ipad-outer-radius-y: 4.90%;
+  --ipad-screen-radius-x: 2.70%;
+  --ipad-screen-radius-y: 1.80%;
+  --ipad-half-hidden-height: 70.34%;
+
+  aspect-ratio: 177.5 / 249.7;
 }
 
 .ipad-chassis--half {
-  aspect-ratio: auto;
-  overflow: hidden;
-  border-radius: 7% 7% 0 0;
-  padding-bottom: 0;
-}
-
-.ipad-chassis--half .ipad-bezel {
-  border-radius: 5.5% 5.5% 0 0;
-  padding-bottom: 0;
+  clip-path: inset(0 0 50% 0);
+  margin-bottom: calc(-1 * var(--ipad-half-hidden-height));
 }
 
 .ipad-chassis--half .ipad-screen {
-  border-radius: 2% 2% 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #f8fafc;
+}
+
+.ipad-chassis--half .ipad-screen img {
+  width: 100%;
+  height: 50%;
+  object-fit: contain;
+  object-position: top center;
 }
 
 .ipad-screen--placeholder {
@@ -1265,12 +1303,57 @@ footer {
 
 .featured-card > .ipad-chassis {
   flex-shrink: 0;
+  align-self: flex-start;
+  height: auto;
 }
 
 .featured-card:first-child > .ipad-chassis {
-  margin-left: 34px;
-  margin-top: 58px;
-  width: 65%;
+  margin-left: 24px;
+  margin-top: 40px;
+  width: 58%;
+}
+
+.featured-card > .ipad-device {
+  display: block;
+  flex-shrink: 0;
+  align-self: flex-start;
+  height: auto;
+}
+
+.ipad-device svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.featured-card:first-child > .ipad-device {
+  margin-left: 24px;
+  margin-top: 40px;
+  width: min(58%, 38rem);
+}
+
+.featured-card:first-child > .ipad-device--portrait {
+  width: min(58%, 38rem);
+}
+
+.ipad-device--portrait.ipad-device--half {
+  clip-path: inset(0 0 28% 0);
+  margin-bottom: -32%;
+}
+
+.featured-card:not(:first-child) > .ipad-device {
+  order: 2;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featured-card:not(:first-child) > .ipad-device--portrait {
+  width: min(46%, 17rem);
+}
+
+.featured-card:not(:first-child) > .ipad-device--landscape {
+  width: min(62%, 22rem);
 }
 
 .featured-copy {
@@ -1497,14 +1580,18 @@ footer {
   }
 
   .featured-card:first-child > .ipad-chassis {
-    width: 60%;
+    width: 54%;
+  }
+
+  .featured-card:first-child > .ipad-device--portrait {
+    width: min(58%, 38rem);
   }
 
   .featured-card:not(:first-child) > .ipad-chassis {
     order: 2;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+    width: 62%;
   }
 
   .featured-copy {
@@ -1685,9 +1772,16 @@ footer {
 
   .featured-card:first-child > .ipad-chassis {
     flex: none;
-    width: 55%;
-    margin-left: 34px;
-    margin-top: 58px;
+    width: 48%;
+    margin-left: 24px;
+    margin-top: 40px;
+  }
+
+  .featured-card:first-child > .ipad-device--portrait {
+    flex: none;
+    width: min(58%, 38rem);
+    margin-left: 18px;
+    margin-top: 24px;
   }
 
   .featured-card:first-child .featured-copy {
@@ -1700,7 +1794,7 @@ footer {
     order: 2;
     margin-left: auto;
     margin-right: auto;
-    width: 65%;
+    width: 58%;
   }
 
   .featured-project {
