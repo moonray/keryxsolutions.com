@@ -1214,6 +1214,7 @@ footer {
 
 .featured-card:first-child > .ipad-device {
   margin-left: 24px;
+  margin-right: 24px;
   margin-top: 40px;
   width: min(58%, 38rem);
 }
@@ -1658,6 +1659,7 @@ footer {
     flex: none;
     width: min(58%, 38rem);
     margin-left: 48px;
+    margin-right: 48px;
     margin-top: 48px;
   }
 
