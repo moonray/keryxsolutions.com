@@ -23,7 +23,7 @@ Keryx Solutions is best suited for organizations that need senior technical guid
 
 ## Technology focus
 
-Common focus areas include TypeScript, React, Node.js, system architecture, developer experience, AI tooling, and user experience.
+Common focus areas include JavaScript and TypeScript, React, Node.js, Python, WordPress, WooCommerce, Lightspeed Retail and eCommerce (formerly Ecwid), system architecture, developer experience, AI tooling, user experience, and practical PHP/Drupal modernization for existing systems.
 
 ## Founder
 
