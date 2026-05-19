@@ -18,7 +18,7 @@
 - **Stack:** Lightspeed POS & eCommerce, Javascript, Python
 - **Image:** `resources/espritcreations.jpg`
 
-### Florida Wholesale Liquidation — Florida Wholesale Liquidation
+### Online Store — Florida Wholesale Liquidation
 
 - **Services:** Custom development, Migration, Integration, Ongoing support
 - **Stack:** WordPress, WooCommerce, PHP, Lightspeed POS & eCommerce, Javascript

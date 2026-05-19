@@ -91,7 +91,7 @@ async function renderFeaturedCards(items) {
       `                <img class="ipad-screenshot" src="${escapeHtml(item.image)}" alt="" loading="lazy" />`,
       '              </div>',
       '              <div class="featured-copy">',
-      '                <span class="featured-badge">Keryx Solutions</span>',
+      '                <span class="featured-badge">Recent Work</span>',
       `                <h3 class="featured-project">${project}</h3>`,
       `                <p class="featured-client">${client}</p>`,
       `                <p class="featured-services">${services}</p>`,
