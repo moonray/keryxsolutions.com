@@ -69,10 +69,7 @@
 
   /* Gallery */
   --viewport-content: min(87.5vw, 1024px);
-  --gallery-side-padding: max(
-    0px,
-    calc((100vw - var(--viewport-content)) / 2)
-  );
+  --gallery-side-padding: max(0px, calc((100vw - var(--viewport-content)) / 2));
 }
 
 * {
@@ -87,7 +84,12 @@ html {
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
     sans-serif;
   font-size: var(--font-size-base);
   line-height: 1.6;
@@ -378,11 +380,8 @@ nav a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-      circle at 30% 20%,
-      var(--accent-gold) 0%,
-      transparent 50%
-    ),
+  background:
+    radial-gradient(circle at 30% 20%, var(--accent-gold) 0%, transparent 50%),
     radial-gradient(circle at 70% 80%, var(--accent-teal) 0%, transparent 50%);
   opacity: 0.1;
   z-index: 1;
@@ -454,7 +453,12 @@ nav a:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14, 19, 38, 0.08) 0%, rgba(14, 19, 38, 0.78) 72%, rgba(14, 19, 38, 0.92) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(14, 19, 38, 0.08) 0%,
+    rgba(14, 19, 38, 0.78) 72%,
+    rgba(14, 19, 38, 0.92) 100%
+  );
   pointer-events: none;
 }
 
@@ -676,7 +680,9 @@ nav a:hover {
   padding: 0;
   width: 36px;
 
-  transition: background-color 0.1s linear, color 0.1s linear,
+  transition:
+    background-color 0.1s linear,
+    color 0.1s linear,
     opacity 0.1s linear;
   will-change: opacity;
 }
@@ -940,10 +946,6 @@ footer {
   overflow: hidden;
 }
 
-.work-summary {
-  margin-top: 0.75rem;
-}
-
 .noscript-note {
   margin-bottom: 1rem;
 }
@@ -1057,7 +1059,9 @@ footer {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .work-card:hover .work-details,
@@ -1101,7 +1105,6 @@ footer {
 .work-stats {
   display: flex;
   gap: 2.5rem;
-  margin-top: 1.5rem;
 }
 
 .work-stat-number {
@@ -1113,7 +1116,7 @@ footer {
 
 .work-stat-label {
   font-size: var(--font-size-xs);
-  color: var(--text-tertiary);
+  color: #5b667d;
   margin-top: 4px;
 }
 
@@ -1204,7 +1207,6 @@ footer {
 .ipad-device--landscape {
   padding-bottom: 3.7%;
 }
-
 
 .featured-card > .ipad-device {
   display: block;
