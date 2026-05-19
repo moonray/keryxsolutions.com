@@ -109,8 +109,14 @@ This is proof and portfolio, not the premium storytelling block.
 Requirements:
 - lighter background than the expertise section
 - obvious contrast from the section above it
-- carousel content must be present in static HTML for resilience and agent readability
+- work content must be present in static HTML for resilience and agent readability
 - visual treatment should stay more neutral than the expertise section
+- the `Recent Keryx Projects` block should remain a static featured-card grid above the broader work carousel
+- featured cards should keep the current iPad-framed image treatment rather than reverting to generic thumbnails
+- secondary featured cards should keep their device/image blocks bottom-aligned so uneven image heights do not float upward
+- the lead featured card should preserve matching horizontal inset around the device on desktop
+- portrait iPad devices in the featured-work treatment should keep `padding-top: 0`
+- the lead featured-card copy should preserve the inherited padding rhythm; on desktop, remove only the left padding rather than overriding all padding
 
 ### How we work (`#services`)
 - light section
@@ -212,13 +218,14 @@ Avoid:
 
 ## Content generation and source of truth
 
-The work carousel is static-first in HTML for resilience and agent-readiness, but the **authoring source** should remain structured data.
+The work content is static-first in HTML for resilience and agent-readiness, but the **authoring source** should remain structured data.
 
 Source of truth:
 - `resources/work-items.json`
 
 Generated outputs:
-- the marked work-carousel region in `index.html`
+- the marked featured-work region in `index.html` (`FEATURED_WORK_START` / `FEATURED_WORK_END`)
+- the marked work-carousel region in `index.html` (`WORK_CAROUSEL_START` / `WORK_CAROUSEL_END`)
 - `work.md`
 
 Do not manually edit generated regions if the sync script is available.
@@ -228,62 +235,34 @@ Do not manually edit generated regions if the sync script is available.
 When adding or changing work items:
 1. edit `resources/work-items.json`
 2. run `scripts/sync-work-content.mjs`
-3. review the diff in `index.html` and `work.md`
+3. review the diff in `index.html` and `work.md`, including both the featured cards and the carousel slides
 
 ## Reusable components
 
-### Device frame (`.ipad-chassis`)
+### Device frame (`.ipad-device`)
 
-A realistic iPad frame with silver aluminum chassis, black glass bezel, camera dot, and screen glare. Apply the nested HTML structure to any image.
+The current featured-work implementation uses the `.ipad-device` family rather than the older `.ipad-chassis` structure. Keep future work aligned with the existing SVG-frame contract unless the component is intentionally redesigned.
 
-Usage (landscape, default):
+Usage (portrait featured card):
 ```html
-<div class="ipad-chassis">
-  <div class="ipad-bezel">
-    <div class="ipad-camera"></div>
-    <div class="ipad-screen">
-      <img src="..." alt="..." />
-    </div>
-  </div>
+<div class="ipad-device ipad-device--portrait ipad-device--half" aria-hidden="true">
+  <img class="ipad-screenshot" src="..." alt="" loading="lazy" />
 </div>
 ```
 
-Portrait orientation:
+Usage (landscape variant when needed):
 ```html
-<div class="ipad-chassis ipad-chassis--portrait">
-  <div class="ipad-bezel">
-    <div class="ipad-camera"></div>
-    <div class="ipad-screen">
-      <img src="..." alt="..." />
-    </div>
-  </div>
+<div class="ipad-device ipad-device--landscape" aria-hidden="true">
+  <img class="ipad-screenshot" src="..." alt="" loading="lazy" />
 </div>
 ```
 
-Placeholder (no image yet):
-```html
-<div class="ipad-chassis">
-  <div class="ipad-bezel">
-    <div class="ipad-camera"></div>
-    <div class="ipad-screen ipad-screen--placeholder">
-      <span>Label</span>
-    </div>
-  </div>
-</div>
-```
-
-Visual spec:
-- 3-layer structure: silver chassis rim → black glass bezel → screen
-- Match the **11-inch iPad Pro (M4)** proportions, not a generic 4:3 tablet
-- Landscape chassis aspect ratio: `249.7 / 177.5`; portrait: `177.5 / 249.7`
-- Outer chassis radius: **19 mm** (`7.61% / 10.70%` in landscape, flipped in portrait)
-- Total inset from chassis edge to screen edge: **7.12 mm** (`2.85%` in landscape, `4.01%` in portrait), split between a thin silver rim and the black bezel
-- Screen radius: **12 mm** (`5.10% / 7.35%` in landscape, flipped in portrait)
-- Camera: dark dot centered on the top bezel with lens detail via `::after`
-- Screen keeps the subtle glare overlay via `::after`
-- `--half` variant clips the lower half for the featured-work cards while preserving the full device geometry
-- No breakpoint-specific iPad overrides needed — the ratios should scale proportionally
-- White card backgrounds, never dark (Our Work section is neutral/light)
+Current contract:
+- `.ipad-device--portrait` and `.ipad-device--landscape` use SVG frame overlays from `resources/ipad-frame-portrait.svg` and `resources/ipad-frame-landscape.svg`
+- `.ipad-screenshot` should remain the only image element inside the device wrapper
+- the `--half` variant is used in featured-work cards to crop the device while preserving the frame treatment
+- featured-work cards should keep white card backgrounds and neutral surfaces
+- preserve the current proportions and framing unless the device treatment is being intentionally redesigned across the section
 
 ## Anti-patterns to avoid
 
@@ -292,7 +271,7 @@ Visual spec:
 - placing adjacent sections on nearly identical backgrounds
 - side-by-side heading / intro layouts that break the established rhythm
 - introducing runtime-only content when static content is possible
-- manually editing generated work carousel markup if JSON is intended to stay canonical
+- manually editing generated featured-work or work-carousel markup if JSON is intended to stay canonical
 
 ## Quick checklist for future edits
 
