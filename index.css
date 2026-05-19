@@ -1197,7 +1197,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-top: 5.9%;
+  padding-top: 0;
   padding-bottom: 0;
 }
 
@@ -1216,11 +1216,13 @@ footer {
   margin-left: 24px;
   margin-right: 24px;
   margin-top: 40px;
-  width: min(58%, 38rem);
+  width: 100%;
+  max-width: min(38rem, calc(100% - 48px));
 }
 
 .featured-card:first-child > .ipad-device--portrait {
-  width: min(58%, 38rem);
+  width: 100%;
+  max-width: min(38rem, calc(100% - 48px));
 }
 
 .featured-card:not(:first-child) > .ipad-device {
@@ -1462,7 +1464,8 @@ footer {
   }
 
   .featured-card:first-child > .ipad-device--portrait {
-    width: min(58%, 38rem);
+    width: 100%;
+    max-width: min(38rem, calc(100% - 48px));
   }
 
   .featured-card:not(:first-child) > .ipad-device {
@@ -1656,16 +1659,17 @@ footer {
   }
 
   .featured-card:first-child > .ipad-device--portrait {
-    flex: none;
-    width: min(58%, 38rem);
-    margin-left: 48px;
-    margin-right: 48px;
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: min(38rem, calc(62% - 100px));
+    margin-left: 50px;
+    margin-right: 50px;
     margin-top: 48px;
   }
 
   .featured-card:first-child .featured-copy {
     flex: 0 0 38%;
-    padding: 3rem;
+    padding-left: 0;
     justify-content: center;
   }
 
