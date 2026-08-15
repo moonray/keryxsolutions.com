@@ -1,5 +1,11 @@
 # CLAUDE.md
 
+
+## Archive integration
+
+- **Client:** `keryx`
+- **Sync communications:** use the `client-archive-sync` skill
+
 Agent instructions for this repository.
 
 ## Before making visual or content changes
