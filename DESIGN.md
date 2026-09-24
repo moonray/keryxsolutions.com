@@ -240,6 +240,10 @@ When adding or changing work items:
 
 ## Reusable components
 
+### Site chrome (`.site-header` / `.site-footer`)
+
+The fixed site header and footer are class-targeted (`.site-header`, `.site-footer`), never bare `header`/`footer` element selectors, so semantic `<header>`/`<footer>` elements inside article content (e.g. a case study's `.case-study-header`) never inherit the fixed positioning, glass background, or chrome borders. Subpages must copy the site chrome markup with these classes and point nav anchors back at the homepage (e.g. `../../#our-work`).
+
 ### Device frame (`.ipad-device`)
 
 The current featured-work implementation uses the `.ipad-device` family rather than the older `.ipad-chassis` structure. Keep future work aligned with the existing SVG-frame contract unless the component is intentionally redesigned.

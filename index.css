@@ -277,7 +277,7 @@ body.modal-open {
 }
 
 /* Header */
-header {
+.site-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -290,7 +290,7 @@ header {
   transition: all 0.3s ease;
 }
 
-header:after {
+.site-header:after {
   background-color: var(--border);
   bottom: 0;
   content: "";
@@ -890,14 +890,14 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-header .cta-button {
+.site-header .cta-button {
   font-size: 0.625rem;
   font-weight: 400;
   padding-block: 2px;
   padding-inline: 8px;
 }
 
-header .cta-button:hover {
+.site-header .cta-button:hover {
   color: var(--accent-navy);
   /* Smaller button needs less movement */
   transform: translateY(-1px);
@@ -1337,7 +1337,7 @@ footer {
   }
 
   /* Header */
-  header {
+  .site-header {
     padding: 10px 0;
   }
 
@@ -1355,7 +1355,7 @@ footer {
     font-size: var(--font-size-sm);
   }
 
-  header .cta-button {
+  .site-header .cta-button {
     padding-inline: 10px;
     padding-block: 3px;
     font-size: inherit;
@@ -1600,7 +1600,7 @@ footer {
   }
 
   /* Footer */
-  footer {
+  .site-footer {
     font-size: 0.7rem;
     padding: 14px 0;
   }

@@ -26,7 +26,7 @@
         if (!target) return;
 
         event.preventDefault();
-        const headerHeight = document.querySelector("header")?.offsetHeight || 0;
+        const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
         const targetPosition = target.offsetTop - headerHeight;
         window.scrollTo({
           top: targetPosition,
