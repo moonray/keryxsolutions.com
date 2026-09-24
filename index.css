@@ -1775,6 +1775,7 @@ footer {
 }
 
 /* Case study article page */
+/* Column matches the blog (blog.keryxsolutions.com): 728px, centered */
 .case-study-header {
   padding: 7.5rem 0 3.5rem;
   background: var(--bg-primary);
@@ -1783,6 +1784,7 @@ footer {
 .case-study-header .container {
   display: grid;
   gap: 1.25rem;
+  max-width: 728px;
 }
 
 .breadcrumb {
@@ -1830,7 +1832,9 @@ footer {
 }
 
 .case-study-prose {
-  max-width: 760px;
+  max-width: 728px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .case-study-prose h2 {
