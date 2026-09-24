@@ -1840,6 +1840,7 @@ footer {
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--text-primary);
+  clear: both;
 }
 
 .case-study-prose p {
@@ -1872,10 +1873,10 @@ footer {
   color: var(--text-tertiary);
 }
 
-.case-study-figure--narrow {
-  max-width: 360px;
-  margin-left: auto;
-  margin-right: auto;
+.case-study-figure--float {
+  float: right;
+  max-width: 320px;
+  margin: 0.5rem 0 1.5rem 1.75rem;
 }
 
 .case-study-quote {
@@ -1946,6 +1947,12 @@ footer {
   .case-study-prose h2 {
     margin-top: 2.5rem;
     font-size: var(--font-size-2xl);
+  }
+
+  .case-study-figure--float {
+    float: none;
+    max-width: 360px;
+    margin: 2.5rem auto;
   }
 
   .case-study-cta {
