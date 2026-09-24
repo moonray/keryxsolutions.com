@@ -1912,12 +1912,18 @@ footer {
 .case-study-cta {
   display: grid;
   gap: 1rem;
-  justify-items: start;
+  justify-items: center;
+  text-align: center;
   margin-top: 4rem;
-  padding: 2.5rem 2rem;
-  background: var(--accent-navy);
+  padding: 3rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--accent-mint) 0%,
+    var(--accent-teal) 100%
+  );
   color: var(--text-contrast);
   border-radius: 18px;
+  box-shadow: 0 2px 12px var(--card-shadow-subtle);
 }
 
 .case-study-cta h2 {
@@ -1931,7 +1937,7 @@ footer {
 .case-study-cta p {
   margin: 0;
   max-width: 620px;
-  color: var(--text-contrast-subtle);
+  color: var(--text-contrast);
 }
 
 .case-study-cta .cta-button {
