@@ -6,7 +6,8 @@
     "services": "Custom development, UX & design, Ongoing support, SEO",
     "stack": "Tech stack: WordPress, PHP",
     "image": "resources/motorygroup.jpg",
-    "type": "current"
+    "type": "current",
+    "caseStudyUrl": "/work/motory-group/"
   },
   {
     "id": "espritcreations",

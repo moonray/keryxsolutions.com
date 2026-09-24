@@ -117,6 +117,7 @@ Requirements:
 - the lead featured card should preserve matching horizontal inset around the device on desktop
 - portrait iPad devices in the featured-work treatment should keep `padding-top: 0`
 - the lead featured-card copy should preserve the inherited padding rhythm; on desktop, remove only the left padding rather than overriding all padding
+- a featured card whose work item carries a `caseStudyUrl` links to its case-study page: the card gets the `featured-card--linked` stretched-link treatment plus a visible `featured-cta` ("Read the case study") line, keeping one keyboard-focusable link per card
 
 ### How we work (`#services`)
 - light section

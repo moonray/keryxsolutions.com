@@ -84,19 +84,33 @@ async function renderFeaturedCards(items) {
     const client = escapeHtml(item.client);
     const services = escapeHtml(item.services);
     const stack = escapeHtml(normalizeStackHtml(item.stack));
+    const caseStudyUrl =
+      typeof item.caseStudyUrl === 'string' ? item.caseStudyUrl.trim() : '';
+    const cardClass = caseStudyUrl
+      ? 'featured-card featured-card--linked'
+      : 'featured-card';
 
-    cards.push([
-      '            <article class="featured-card">',
-      `              <div class="ipad-device ipad-device--portrait ipad-device--half" aria-hidden="true">`,
-      `                <img class="ipad-screenshot" src="${escapeHtml(item.image)}" alt="" loading="lazy" />`,
-      '              </div>',
+    const copy = [
       '              <div class="featured-copy">',
       '                <span class="featured-badge">Recent Work</span>',
       `                <h3 class="featured-project">${project}</h3>`,
       `                <p class="featured-client">${client}</p>`,
       `                <p class="featured-services">${services}</p>`,
-      `                <p class="featured-stack">${stack}</p>`,
+      `                <p class="featured-stack">${stack}</p>`
+    ];
+    if (caseStudyUrl) {
+      copy.push(
+        `                <a class="featured-cta" href="${escapeHtml(caseStudyUrl)}">Read the case study</a>`
+      );
+    }
+    copy.push('              </div>');
+
+    cards.push([
+      `            <article class="${cardClass}">`,
+      `              <div class="ipad-device ipad-device--portrait ipad-device--half" aria-hidden="true">`,
+      `                <img class="ipad-screenshot" src="${escapeHtml(item.image)}" alt="" loading="lazy" />`,
       '              </div>',
+      ...copy,
       '            </article>'
     ].join('\n'));
   }
@@ -114,6 +128,16 @@ async function validateItems(items) {
       if (typeof item[field] !== 'string' || !item[field].trim()) {
         throw new Error(`work-items.json item ${index} is missing a valid ${field}`);
       }
+    }
+
+    if (
+      item.caseStudyUrl !== undefined &&
+      (typeof item.caseStudyUrl !== 'string' ||
+        !item.caseStudyUrl.trim().startsWith('/'))
+    ) {
+      throw new Error(
+        `work-items.json item ${index} has an invalid caseStudyUrl (expected a root-relative path like "/work/<client>/")`
+      );
     }
 
     const imagePath = path.join(siteRoot, item.image);
@@ -146,6 +170,9 @@ function renderWorkMarkdown(items) {
       lines.push(`- **Services:** ${item.services}`);
       lines.push(`- **Stack:** ${normalizeStackForMarkdown(item.stack)}`);
       lines.push(`- **Image:** \`${item.image}\``);
+      if (typeof item.caseStudyUrl === 'string' && item.caseStudyUrl.trim()) {
+        lines.push(`- **Case study:** [Read the case study](${item.caseStudyUrl.trim()})`);
+      }
       lines.push('');
     }
   }

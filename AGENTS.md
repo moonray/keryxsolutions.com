@@ -24,11 +24,21 @@ After editing it, run:
 
 ```bash
 node scripts/sync-work-content.mjs
+npx prettier --write index.html work.md
 ```
 
 This regenerates:
 - the marked featured-work region in `index.html`
 - the marked work-carousel region in `index.html`
 - `work.md`
+
+Prettier restores the committed wrapping; running only the sync script leaves
+single-line attributes across the generated regions.
+
+A work item may carry an optional `caseStudyUrl` (root-relative path, e.g.
+`/work/motory-group/`). The generator then renders that featured card as a
+link with a "Read the case study" call to action, and adds a case-study line
+to `work.md`. Case-study pages live at `work/<client>/index.html` and include
+the site header, footer, and scheduling modal.
 
 Avoid manually editing generated work items in `index.html` unless you are also updating the generator.
