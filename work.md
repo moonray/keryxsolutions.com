@@ -11,7 +11,7 @@
 - **Services:** Custom development, UX & design, Ongoing support, SEO
 - **Stack:** WordPress, PHP
 - **Image:** `resources/motorygroup.jpg`
-- **Case study:** [Read the case study](/work/motory-group/)
+- **Case study:** [Read the case study](work/motory-group/index.html)
 
 ### Wholesale Portal — Esprit Creations
 

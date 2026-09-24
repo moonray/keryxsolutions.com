@@ -133,10 +133,12 @@ async function validateItems(items) {
     if (
       item.caseStudyUrl !== undefined &&
       (typeof item.caseStudyUrl !== 'string' ||
-        !item.caseStudyUrl.trim().startsWith('/'))
+        !item.caseStudyUrl.trim() ||
+        /^[a-z]+:\/\//i.test(item.caseStudyUrl.trim()) ||
+        item.caseStudyUrl.trim().startsWith('//'))
     ) {
       throw new Error(
-        `work-items.json item ${index} has an invalid caseStudyUrl (expected a root-relative path like "/work/<client>/")`
+        `work-items.json item ${index} has an invalid caseStudyUrl (expected a site-relative path like "work/<client>/")`
       );
     }
 

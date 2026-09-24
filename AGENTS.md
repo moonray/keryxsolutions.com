@@ -35,8 +35,10 @@ This regenerates:
 Prettier restores the committed wrapping; running only the sync script leaves
 single-line attributes across the generated regions.
 
-A work item may carry an optional `caseStudyUrl` (root-relative path, e.g.
-`/work/motory-group/`). The generator then renders that featured card as a
+A work item may carry an optional `caseStudyUrl` (site-relative path, e.g.
+`work/motory-group/index.html`; keep it relative and end it at the page file,
+not the directory, so local previews that do not serve the repo root or
+resolve directory indexes still load it). The generator then renders that featured card as a
 link with a "Read the case study" call to action, and adds a case-study line
 to `work.md`. Case-study pages live at `work/<client>/index.html` and include
 the site header, footer, and scheduling modal.
