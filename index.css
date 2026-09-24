@@ -1849,7 +1849,7 @@ footer {
 
 .case-study-prose p {
   margin: 0 0 1.25rem;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   line-height: 1.65;
   color: var(--text-secondary);
 }
