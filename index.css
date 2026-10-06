@@ -108,6 +108,16 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar-track {
   background: transparent;
