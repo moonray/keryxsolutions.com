@@ -379,9 +379,17 @@
 
     if (!modal || !closeModal) return;
 
+    // The scheduling iframe is shipped without a src and is only loaded the
+    // first time the modal opens, so its third-party cookies and payload stay
+    // off the initial page load.
+    const calendarFrame = modal.querySelector("iframe[data-src]");
+
     modalOpeners.forEach((opener) => {
       opener.addEventListener("click", (event) => {
         event.preventDefault();
+        if (calendarFrame && !calendarFrame.hasAttribute("src")) {
+          calendarFrame.src = calendarFrame.dataset.src;
+        }
         modal.style.display = "block";
         document.body.classList.add("modal-open");
       });

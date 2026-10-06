@@ -923,7 +923,7 @@ footer {
 }
 
 .footer-content {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .footer-content p {
@@ -1803,11 +1803,11 @@ footer {
   align-items: center;
   gap: 0.5rem;
   font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .breadcrumb a {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   text-decoration: none;
 }
 
@@ -1834,7 +1834,7 @@ footer {
 .case-study-meta {
   margin: 0;
   font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .case-study-body {
@@ -1884,7 +1884,7 @@ footer {
 .case-study-figure figcaption {
   margin-top: 0.625rem;
   font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .case-study-figure--float {
@@ -1920,7 +1920,7 @@ footer {
 
 .case-study-attribution .role {
   font-size: var(--font-size-sm);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .case-study-cta {
