@@ -336,14 +336,31 @@
         var id = window.TALLY_FORM_ID;
         var container = document.getElementById("tally-form-container");
         if (!id || id === "PLACEHOLDER_FORM_ID" || !container) return;
+        // Tally's official embed contract: an iframe carrying data-tally-src,
+        // activated by embed.js calling Tally.loadEmbeds().
         container.classList.remove("tally-placeholder");
-        container.setAttribute(
-          "data-tally-widget",
-          "https://tally.so/embed/" + id,
+        container.textContent = "";
+        var frame = document.createElement("iframe");
+        frame.setAttribute(
+          "data-tally-src",
+          "https://tally.so/embed/" +
+            encodeURIComponent(id) +
+            "?dynamicHeight=1",
         );
+        frame.loading = "lazy";
+        frame.width = "100%";
+        frame.height = "700";
+        frame.frameBorder = "0";
+        frame.title = "Request the dealership website cost breakdown";
+        container.appendChild(frame);
         var s = document.createElement("script");
         s.src = "https://tally.so/widgets/embed.js";
         s.async = true;
+        s.onload = function () {
+          if (window.Tally && typeof window.Tally.loadEmbeds === "function") {
+            window.Tally.loadEmbeds();
+          }
+        };
         document.head.appendChild(s);
       })();
     </script>
