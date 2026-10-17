@@ -361,6 +361,11 @@
             window.Tally.loadEmbeds();
           }
         };
+        s.onerror = function () {
+          // Blocker/network fallback (per Tally's official snippet): load the
+          // embed directly so the form still renders without embed.js.
+          frame.src = frame.getAttribute("data-tally-src");
+        };
         document.head.appendChild(s);
       })();
     </script>
