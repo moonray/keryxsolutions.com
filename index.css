@@ -183,7 +183,7 @@ a:hover {
 
 .inline-link {
   color: var(--accent-blue);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .inline-link:hover {
@@ -1994,4 +1994,17 @@ footer {
   .case-study-cta {
     padding: 2rem 1.5rem;
   }
+}
+
+/* Body-copy links always carry an underline; site chrome (header, footer,
+   nav, breadcrumb, buttons, work cards) keeps its own link rules. */
+.section-copy a,
+.body-large a,
+.body-medium a,
+.faq-item a,
+.insight-article a,
+.cost-inside a,
+.cost-form-card a,
+.case-study figcaption a {
+  text-decoration: underline;
 }
