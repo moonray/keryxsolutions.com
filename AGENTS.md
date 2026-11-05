@@ -44,3 +44,32 @@ to `work.md`. Case-study pages live at `work/<client>/index.html` and include
 the site header, footer, and scheduling modal.
 
 Avoid manually editing generated work items in `index.html` unless you are also updating the generator.
+
+## Insight pages (`/insights/`)
+
+Short direct-answer pages targeting question queries with repeat GSC demand.
+Topics are the operator's call (single-digit impressions are seeds, not a
+queue); the first batch, the B1-B4 decisions, and the settled constraints
+live in GitHub issue #8 and the handoff it links.
+
+When adding a page:
+
+- `insights/<slug>/index.html`, hand-authored, modeled on the existing pages:
+  site chrome with `../../` nav anchors, shared `index.css`/`main.js`,
+  og/twitter card, canonical URL, robots meta.
+- H1 asks the exact question; the first paragraph under it is the direct
+  answer (the snippet/AI-Overview target).
+- Two-crumb breadcrumb (`Home › short page label`) plus a matching 2-item
+  BreadcrumbList JSON-LD. No middle crumb: there is deliberately no
+  `/insights/` index page, and `#services` is not a semantic parent.
+- Cross-link sibling pages only where topically real; link a blog post only
+  where one genuinely covers the topic (weak links are noise).
+- The same change updates the mirrors: one `<url>` per page in `sitemap.xml`
+  and a line in the `## Insight answers` section of `llms.txt`.
+- Copy is net-new only: blog.keryxsolutions.com is the canonical full-text
+  home; never copy or near-copy post text onto the main site (Substack cannot
+  set outbound rel=canonical). Copy follows the Keryx writing style guide
+  (keryxsolutions repo: `docs/business/writing-style-guide.md`): em-dash-free,
+  slop-checked before commit.
+- Format touched HTML with `npx prettier --write <files>`; committed HTML is
+  prettier-clean.
