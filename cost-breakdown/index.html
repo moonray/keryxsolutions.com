@@ -25,7 +25,7 @@
     />
     <meta
       name="description"
-      content="A one-page breakdown of dealership website economics: per-location licensing versus one platform for the whole group — the real numbers from Motory Group's published case study. Emailed to you — no call required."
+      content="A one-page breakdown of dealership website economics: per-location licensing versus one platform for the whole group — the real numbers from Motory Group's published case study. Instant download, no call required."
     />
     <meta
       name="robots"
@@ -37,7 +37,7 @@
     />
     <meta
       property="og:description"
-      content="Per-location licensing versus one platform for the whole group — the one-page cost breakdown, emailed to you."
+      content="Per-location licensing versus one platform for the whole group — the one-page cost breakdown, instant download."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -61,7 +61,7 @@
     />
     <meta
       name="twitter:description"
-      content="Per-location licensing versus one platform for the whole group — the one-page cost breakdown, emailed to you."
+      content="Per-location licensing versus one platform for the whole group — the one-page cost breakdown, instant download."
     />
     <meta
       name="twitter:image"
@@ -147,7 +147,64 @@
         color: #555;
         line-height: 1.6;
       }
-      .tally-placeholder {
+      .cost-form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .cost-form input[type="email"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.9rem 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.75rem;
+        font: inherit;
+        margin-bottom: 1.25rem;
+      }
+      .cost-form input[type="email"]:focus {
+        outline: 2px solid var(--accent-gold);
+        border-color: var(--accent-gold);
+      }
+      .cost-form .cta-button {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+      .cost-form .cta-button:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+      .form-note {
+        margin: 1rem 0 0;
+        font-size: 0.9rem;
+        color: #555;
+        text-align: center;
+      }
+      .form-error {
+        margin: 1rem 0 0;
+        font-size: 0.9rem;
+        color: #a03030;
+        text-align: center;
+      }
+      .form-success {
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 0.75rem;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: #555;
+        line-height: 1.6;
+      }
+      .form-success p {
+        margin: 0 0 0.5rem;
+      }
+      .form-success p:last-child {
+        margin-bottom: 0;
+      }
+      .form-success .cta-button {
+        margin-top: 0.75rem;
+      }
+      .form-placeholder {
         border: 1px dashed rgba(0, 0, 0, 0.25);
         border-radius: 0.75rem;
         padding: 2rem 1.5rem;
@@ -155,10 +212,10 @@
         color: #555;
         line-height: 1.6;
       }
-      .tally-placeholder p {
+      .form-placeholder p {
         margin: 0 0 0.5rem;
       }
-      .tally-placeholder p:last-child {
+      .form-placeholder p:last-child {
         margin-bottom: 0;
       }
       @media (max-width: 600px) {
@@ -239,17 +296,58 @@
                 </li>
               </ul>
               <p class="cost-delivery">
-                It arrives as a one-page PDF by email. No call required, no drip
-                campaign — the breakdown, then whatever you decide.
+                The one-page PDF downloads the moment you submit. No call
+                required, no drip campaign — the breakdown, then whatever you
+                decide.
               </p>
             </div>
             <div class="cost-form-card">
               <h2>Get the cost breakdown.</h2>
               <p>
-                Tell us where to send it. The form asks for the minimum — that's
-                deliberate.
+                One field, then the one-page PDF is yours — that's deliberate.
               </p>
-              <div id="tally-form-container" class="tally-placeholder">
+              <form
+                id="cost-form"
+                class="cost-form"
+                method="POST"
+                action="https://formspree.io/f/FORMSPREE_FORM_ID"
+              >
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="Cost-breakdown download — keryxsolutions.com"
+                />
+                <label for="cost-email">Your email</label>
+                <input
+                  id="cost-email"
+                  type="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@dealership.com"
+                />
+                <button type="submit" class="cta-button">
+                  Get the cost breakdown
+                </button>
+              </form>
+              <div id="cost-form-error" class="form-error" hidden>
+                Something went wrong sending that — try again, or
+                <a
+                  class="open-modal"
+                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0provwDCtwhRuWVBYv7zqlCAtBfIwdphMmIcWzKxAxITO9bumCJLOSNGH0M--MP_KLN8K9a6dv?gv=true"
+                  >book a time to talk</a
+                >.
+              </div>
+              <div id="cost-form-success" class="form-success" hidden>
+                <p><strong>Done — your download has started.</strong></p>
+                <p>
+                  If it didn't, grab it directly:
+                  <a href="dealership-cost-breakdown.pdf" download
+                    >dealership-cost-breakdown.pdf</a
+                  >
+                </p>
+              </div>
+              <div id="cost-form-placeholder" class="form-placeholder" hidden>
                 <p><strong>The request form is almost ready.</strong></p>
                 <p>
                   This is where the sign-up form appears once it goes live.
@@ -324,49 +422,56 @@
     </div>
 
     <!-- ============================================================
-         TALLY EMBED — the single wiring point for this page's form.
-         Swap PLACEHOLDER_FORM_ID for the real Tally form id (the <id> in
-         https://tally.so/forms/<id>) and the form renders inside
-         #tally-form-container — no other edit needed. Until then the
-         placeholder box stays and the embed script never loads.
+         FORMSPREE WIRING — the single wiring point for this page's form.
+         Swap FORMSPREE_FORM_ID for the real Formspree form id (the {id} in
+         https://formspree.io/f/{id}) — no other edit needed: the form
+         posts natively without JS, and with JS the submit is upgraded to
+         an inline success state + instant PDF download. Until the id is
+         set, the "almost ready" placeholder card shows instead.
          ============================================================ -->
     <script>
-      window.TALLY_FORM_ID = "PLACEHOLDER_FORM_ID";
+      window.FORMSPREE_FORM_ID = "FORMSPREE_FORM_ID";
       (function () {
-        var id = window.TALLY_FORM_ID;
-        var container = document.getElementById("tally-form-container");
-        if (!id || id === "PLACEHOLDER_FORM_ID" || !container) return;
-        // Tally's official embed contract: an iframe carrying data-tally-src,
-        // activated by embed.js calling Tally.loadEmbeds().
-        container.classList.remove("tally-placeholder");
-        container.textContent = "";
-        var frame = document.createElement("iframe");
-        frame.setAttribute(
-          "data-tally-src",
-          "https://tally.so/embed/" +
-            encodeURIComponent(id) +
-            "?dynamicHeight=1",
-        );
-        frame.loading = "lazy";
-        frame.width = "100%";
-        frame.height = "700";
-        frame.frameBorder = "0";
-        frame.title = "Request the dealership website cost breakdown";
-        container.appendChild(frame);
-        var s = document.createElement("script");
-        s.src = "https://tally.so/widgets/embed.js";
-        s.async = true;
-        s.onload = function () {
-          if (window.Tally && typeof window.Tally.loadEmbeds === "function") {
-            window.Tally.loadEmbeds();
+        var id = window.FORMSPREE_FORM_ID;
+        var form = document.getElementById("cost-form");
+        var placeholder = document.getElementById("cost-form-placeholder");
+        if (!form) return;
+        if (!id || id === "FORMSPREE_FORM_ID") {
+          form.hidden = true;
+          if (placeholder) placeholder.hidden = false;
+          return;
+        }
+        form.action = "https://formspree.io/f/" + encodeURIComponent(id);
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var button = form.querySelector("button[type=submit]");
+          var errorBox = document.getElementById("cost-form-error");
+          var email = form.querySelector("input[type=email]");
+          if (!email.value || !email.checkValidity()) {
+            email.reportValidity();
+            return;
           }
-        };
-        s.onerror = function () {
-          // Blocker/network fallback (per Tally's official snippet): load the
-          // embed directly so the form still renders without embed.js.
-          frame.src = frame.getAttribute("data-tally-src");
-        };
-        document.head.appendChild(s);
+          button.disabled = true;
+          button.textContent = "Sending…";
+          if (errorBox) errorBox.hidden = true;
+          fetch(form.action, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: new FormData(form),
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error("formspree " + res.status);
+              form.hidden = true;
+              var success = document.getElementById("cost-form-success");
+              if (success) success.hidden = false;
+              window.location.href = "dealership-cost-breakdown.pdf";
+            })
+            .catch(function () {
+              button.disabled = false;
+              button.textContent = "Get the cost breakdown";
+              if (errorBox) errorBox.hidden = false;
+            });
+        });
       })();
     </script>
   </body>
