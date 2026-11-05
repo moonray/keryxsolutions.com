@@ -34,7 +34,7 @@ Yes. That can include assessing an aging codebase, identifying the highest-value
 
 ## What happens after launch? Is there ongoing support?
 
-Yes. Engagements don't end at handoff: releases ship through a staged, automatically checked pipeline, updates run on a recurring cadence with backups, and monitoring watches the things that fail quietly, like inventory feeds. The Motory Group case study shows what that looks like day to day.
+Yes. Engagements don't end at handoff: releases ship through a staged, automatically checked pipeline, updates run on a recurring cadence with backups, and monitoring watches the things that fail quietly, like inventory feeds. [The Motory Group case study](https://keryxsolutions.com/work/motory-group/) shows what that looks like day to day.
 
 ## How do we get started?
 
