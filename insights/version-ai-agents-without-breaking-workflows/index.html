@@ -27,7 +27,7 @@
     />
     <meta
       name="description"
-      content="Keep prompts, tool contracts, and model pins in version control as one reviewable unit, gate changes behind contract tests, and roll out in stages so upgrades happen on purpose, with a revert path."
+      content="Keep prompts, tool contracts, model and harness pins in version control as one reviewable unit, gate changes behind contract tests, and roll out in stages so upgrades happen on purpose, with a revert path."
     />
     <meta
       name="robots"
@@ -39,7 +39,7 @@
     />
     <meta
       property="og:description"
-      content="Version the workflow, not the prompt: definitions in git, pinned models, contract tests, staged rollout."
+      content="Version the workflow, not the prompt: definitions in git, pinned models and harness, contract tests, staged rollout."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -63,7 +63,7 @@
     />
     <meta
       name="twitter:description"
-      content="Version the workflow, not the prompt: definitions in git, pinned models, contract tests, staged rollout."
+      content="Version the workflow, not the prompt: definitions in git, pinned models and harness, contract tests, staged rollout."
     />
     <meta
       name="twitter:image"
@@ -212,10 +212,10 @@
           <p class="body-large">
             Version the workflow, not the prompt. Keep agent definitions,
             prompts, and tool contracts in version control as one reviewable
-            unit, pin the model version they run against, and gate every change
-            behind a contract test plus a staged rollout. You then upgrade
-            agents on purpose, with a revert path, instead of discovering a
-            behavior change from a broken run.
+            unit, pin the model and harness versions they run on, and gate every
+            change behind a contract test plus a staged rollout. You then
+            upgrade agents on purpose, with a revert path, instead of
+            discovering a behavior change from a broken run.
           </p>
         </div>
       </section>
@@ -226,14 +226,18 @@
             <h2>Treat the agent definition as code</h2>
             <p>
               An agent is more than a prompt: it is the prompt, the tool list,
-              the schemas those tools accept, and the model it runs on. Change
-              any one of them and you have changed the agent. Keeping all of it
-              in version control makes that visible. Diff review replaces
-              folklore ("didn't we used to ask it differently?"), and every
-              change becomes deliberate and revertible.
+              the schemas those tools accept, the model it runs on, and the
+              harness around it: the code that runs the loop, assembles context,
+              and executes tool calls. The harness is the part most often left
+              out of the definition, and it changes the agent just as much as
+              the prompt does. Change any one of them and you have changed the
+              agent. Keeping all of it in version control makes that visible.
+              Diff review replaces folklore ("didn't we used to ask it
+              differently?"), and every change becomes deliberate and
+              revertible.
             </p>
 
-            <h2>Pin the model, upgrade on purpose</h2>
+            <h2>Pin the model and harness, upgrade on purpose</h2>
             <p>
               Model providers update their models, and behavior shifts with
               those updates: the same prompt quietly answers differently. Pin
@@ -241,7 +245,12 @@
               upgrade, do it as its own change: re-run the checks, compare
               results, then roll the pin forward. A model bump that rides along
               inside an unrelated change is the classic way an agent breaks with
-              nothing in the diff to blame.
+              nothing in the diff to blame. The harness deserves the same
+              discipline. Framework and CLI releases change how context is
+              assembled, how tools dispatch, and what the system prompt says,
+              all without a diff in your code. Pin the harness version per
+              workflow, and make a harness upgrade its own reviewed change, not
+              something the runtime does to you overnight.
             </p>
 
             <h2>Contract tests around every step</h2>
