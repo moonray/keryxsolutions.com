@@ -14,10 +14,19 @@ Key points:
 
 - [Homepage](https://keryxsolutions.com/): Main overview of services, founder background, portfolio summary, FAQ, and contact call to action.
 - [Motory Group case study](https://keryxsolutions.com/work/motory-group/): How a growing buy-here-pay-here auto group consolidated five dealership websites into one auto-mall platform, with measured traffic and lead results.
-- [Dealership website cost breakdown](https://keryxsolutions.com/cost-breakdown/): A one-page breakdown of per-location licensing versus one platform for the whole group, in ranges — emailed, no call required.
+- [Dealership website cost breakdown](https://keryxsolutions.com/cost-breakdown/): A one-page breakdown of per-location licensing versus one platform for the whole group, from Motory Group's published case-study numbers. Emailed, no call required.
 - [Machine-readable company overview](https://keryxsolutions.com/site.md): Concise summary of services, ideal clients, technology focus, and engagement model.
 - [Selected work](https://keryxsolutions.com/work.md): Representative projects and delivery themes.
 - [Buyer FAQ](https://keryxsolutions.com/faq.md): Answers to common questions about fit, services, AI, and how to get started.
+
+## Insight answers
+
+Short direct-answer pages on practical AI agent engineering, each answering one question:
+
+- [Detect an AI agent workflow going off track](https://keryxsolutions.com/insights/detect-off-track-ai-agent-workflows/): Outcome checks, budgets, assertions, and traceability that catch an off-track run before it compounds.
+- [Version AI agents without breaking workflows](https://keryxsolutions.com/insights/version-ai-agents-without-breaking-workflows/): Agent definitions in version control, pinned models, contract tests, and staged rollout.
+- [Make AI workflow database updates succeed or fail together](https://keryxsolutions.com/insights/database-updates-succeed-or-fail-together/): Single-transaction writes, idempotency keys, and the outbox or saga pattern when writes span systems.
+- [Reliable multi-agent research workflows](https://keryxsolutions.com/insights/reliable-multi-agent-research-workflows/): One orchestrator, bounded verifiable delegation, checkpoints, and failure discipline for runs that finish.
 
 ## Contact
 
