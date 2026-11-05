@@ -32,6 +32,10 @@ Good fits include LLM-powered product features, internal workflow automation, de
 
 Yes. That can include assessing an aging codebase, identifying the highest-value improvements, creating an incremental modernization plan, and implementing the changes without forcing unnecessary rewrites.
 
+## What happens after launch? Is there ongoing support?
+
+Yes. Engagements don't end at handoff: releases ship through a staged, automatically checked pipeline, updates run on a recurring cadence with backups, and monitoring watches the things that fail quietly, like inventory feeds. The Motory Group case study shows what that looks like day to day.
+
 ## How do we get started?
 
 Start with a conversation about the current product, technical constraints, and desired outcomes. From there, Keryx Solutions can recommend a focused engagement around architecture, delivery, AI integration, and technical leadership.
