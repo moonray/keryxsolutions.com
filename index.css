@@ -894,6 +894,9 @@ nav a:hover {
   background: var(--accent-gold-hover);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px var(--shadow);
+  /* Buttons keep their affordance on hover: the global a:hover underline
+     must not apply (it outranks the base .cta-button rule). */
+  text-decoration: none;
 }
 
 .fade-in.visible.cta-button:hover {
