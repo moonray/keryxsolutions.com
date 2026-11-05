@@ -28,7 +28,7 @@
     />
     <meta
       name="description"
-      content="Plan first, then wrap the writes in one database transaction that commits everything or nothing, with idempotency keys for safe retries. Here is the pattern, including the cross-system version."
+      content="Plan first, then wrap the writes in one database transaction that commits everything or nothing, with idempotency keys for safe retries. Covers the cross-system case with an outbox or saga."
     />
     <meta
       name="robots"
@@ -228,7 +228,7 @@
               a replay of the same intent hits a record of the first attempt
               instead of creating a second one. With keys in place, "did this
               already happen" is a check, not a guess, and retrying after an
-              uncertain failure costs nothing.
+              uncertain failure is safe.
             </p>
 
             <h2>When the writes span systems</h2>
