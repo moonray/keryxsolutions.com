@@ -17,23 +17,26 @@
   }
 
   function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((anchor) => {
-      anchor.addEventListener("click", function (event) {
-        const selector = this.getAttribute("href");
-        if (!selector) return;
+    document
+      .querySelectorAll('a[href^="#"]:not([href="#"])')
+      .forEach((anchor) => {
+        anchor.addEventListener("click", function (event) {
+          const selector = this.getAttribute("href");
+          if (!selector) return;
 
-        const target = document.querySelector(selector);
-        if (!target) return;
+          const target = document.querySelector(selector);
+          if (!target) return;
 
-        event.preventDefault();
-        const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
-        const targetPosition = target.offsetTop - headerHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
+          event.preventDefault();
+          const headerHeight =
+            document.querySelector(".site-header")?.offsetHeight || 0;
+          const targetPosition = target.offsetTop - headerHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
         });
       });
-    });
   }
 
   function initInitialAnimations() {
@@ -99,7 +102,8 @@
         leftBtn.disabled = false;
         rightBtn.disabled = false;
       } else {
-        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const maxScroll =
+          scrollContainer.scrollWidth - scrollContainer.clientWidth;
         leftBtn.disabled = scrollContainer.scrollLeft <= 0;
         rightBtn.disabled = scrollContainer.scrollLeft >= maxScroll - 2;
       }
@@ -123,7 +127,8 @@
       if (!infinite || isTransitioning) return;
 
       if (targetIndex < duplicateCount) {
-        const realIndex = duplicateCount + totalItems + (targetIndex - duplicateCount);
+        const realIndex =
+          duplicateCount + totalItems + (targetIndex - duplicateCount);
 
         if (fromManualScroll) {
           scrollToIndex(realIndex, false);
@@ -137,7 +142,8 @@
           }, 500);
         }
       } else if (targetIndex >= duplicateCount + totalItems) {
-        const realIndex = duplicateCount + (targetIndex - duplicateCount - totalItems);
+        const realIndex =
+          duplicateCount + (targetIndex - duplicateCount - totalItems);
 
         if (fromManualScroll) {
           scrollToIndex(realIndex, false);
@@ -195,7 +201,10 @@
       const cardRect = cards[cardIndex].getBoundingClientRect();
       const containerRect = scrollContainer.getBoundingClientRect();
 
-      return cardRect.left < containerRect.right && cardRect.right > containerRect.left;
+      return (
+        cardRect.left < containerRect.right &&
+        cardRect.right > containerRect.left
+      );
     };
 
     const handleManualScroll = () => {
@@ -213,7 +222,11 @@
 
       if (lastScrollIndex === scrolledIndex) return;
 
-      if (scrollDirection === -1 && scrolledIndex <= duplicateCount + 1 && isCardVisible(duplicateCount)) {
+      if (
+        scrollDirection === -1 &&
+        scrolledIndex <= duplicateCount + 1 &&
+        isCardVisible(duplicateCount)
+      ) {
         scrollToIndex(duplicateCount + totalItems, false);
         currentIndex = duplicateCount + totalItems;
         lastScrollIndex = duplicateCount + totalItems;
@@ -229,7 +242,10 @@
         return;
       }
 
-      if (scrolledIndex < duplicateCount || scrolledIndex >= duplicateCount + totalItems) {
+      if (
+        scrolledIndex < duplicateCount ||
+        scrolledIndex >= duplicateCount + totalItems
+      ) {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           if (getCurrentIndex() === scrolledIndex) {
@@ -285,7 +301,8 @@
     const emblaNode = document.querySelector(".work-slider .embla__viewport");
     const slides = document.querySelectorAll(".work-slider .embla__slide");
 
-    if (!emblaNode || !slides.length || typeof EmblaCarousel !== "function") return;
+    if (!emblaNode || !slides.length || typeof EmblaCarousel !== "function")
+      return;
 
     const options = {
       loop: true,
@@ -368,7 +385,7 @@
           }
         }
       },
-      { passive: false }
+      { passive: false },
     );
   }
 
@@ -387,6 +404,13 @@
     modalOpeners.forEach((opener) => {
       opener.addEventListener("click", (event) => {
         event.preventDefault();
+        // Booking intent is invisible to GA4 without this: the modal opens
+        // in place, so no outbound navigation is ever recorded.
+        if (typeof gtag === "function") {
+          gtag("event", "cta_modal_open", {
+            modal_trigger: (opener.textContent || "").trim().slice(0, 60),
+          });
+        }
         if (calendarFrame && !calendarFrame.hasAttribute("src")) {
           calendarFrame.src = calendarFrame.dataset.src;
         }

@@ -2067,6 +2067,10 @@ footer {
   margin-bottom: 0;
 }
 
+.insight-cta .cta-button {
+  margin-right: 1.25rem;
+}
+
 @media (max-width: 600px) {
   .insight-hero {
     padding: 6rem 0 2rem;
