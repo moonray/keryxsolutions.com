@@ -26,7 +26,7 @@ AI is used selectively and pragmatically — where it improves delivery quality,
 
 ## What kinds of AI work are a good fit?
 
-Good fits include LLM-powered product features, internal workflow automation, developer productivity tooling, review and evaluation workflows, and practical AI adoption plans that a team can realistically maintain.
+Good fits include LLM-powered product features, internal workflow automation, developer productivity tooling, review and evaluation workflows, and practical AI adoption plans that a team can realistically maintain. The practical questions behind this work are answered in short form on the [insights page](https://keryxsolutions.com/insights/).
 
 ## Does Keryx Solutions help modernize older systems?
 
