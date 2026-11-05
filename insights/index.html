@@ -103,53 +103,44 @@
       }
     </script>
     <style>
-      /* Page-scoped: the /insights/ hub, built on the insight-page rhythm. */
-      .insight-hero {
-        padding: 8rem 0 3rem;
-      }
-      .insight-hero .breadcrumb {
-        margin-bottom: 1.25rem;
-      }
-      .insight-hero .body-large {
-        max-width: 44rem;
-        margin-top: 1.5rem;
-      }
-      .insight-body {
-        padding: 2rem 0 6rem;
-      }
+      /* Page-scoped: hub list layout only; shared insight-page styles live in index.css. */
       .insight-article {
         max-width: 50rem;
       }
-      .insight-index-list {
+
+      .insight-article .insight-index-list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-      .insight-index-list li {
+
+      .insight-article .insight-index-list li {
         padding: 1.75rem 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       }
-      .insight-index-list li:last-child {
+
+      .insight-article .insight-index-list li:last-child {
         border-bottom: none;
       }
-      .insight-index-list h3 {
+
+      .insight-article .insight-index-list h2 {
         font-size: 1.25rem;
         line-height: 1.3;
         margin: 0 0 0.5rem;
       }
-      .insight-index-list h3 a {
+
+      .insight-article .insight-index-list h2 a {
         color: inherit;
       }
-      .insight-index-list p {
+
+      .insight-article .insight-index-list p {
         margin: 0;
         color: #555;
         line-height: 1.6;
       }
+
       @media (max-width: 600px) {
-        .insight-hero {
-          padding: 6rem 0 2rem;
-        }
-        .insight-index-list li {
+        .insight-article .insight-index-list li {
           padding: 1.25rem 0;
         }
       }
@@ -213,12 +204,12 @@
           <div class="insight-article">
             <ul class="insight-index-list">
               <li>
-                <h3>
+                <h2>
                   <a href="detect-off-track-ai-agent-workflows/"
                     >How do you detect when an AI agent workflow goes off
                     track?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Give every step an observable contract: the artifact it must
                   produce, the budget it must stay within, and the assertions
@@ -226,12 +217,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="version-ai-agents-without-breaking-workflows/"
                     >How do you version and update AI agents without breaking
                     workflows?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Keep agent definitions in version control as one reviewable
                   unit, pin the model and harness, gate changes behind contract
@@ -239,12 +230,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="database-updates-succeed-or-fail-together/"
                     >How can several database updates from an AI workflow
                     succeed or fail together?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Plan the work first, then wrap the writes in a single
                   transaction that commits everything or nothing, with
@@ -252,12 +243,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="reliable-multi-agent-research-workflows/"
                     >What setup patterns keep multi-agent research workflows
                     from breaking midway?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   One orchestrator owns the plan, every delegated step is
                   bounded and verifiable, and progress persists so failed runs
@@ -265,11 +256,11 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="evaluate-smithery-agent-automation/"
                     >How do you evaluate Smithery for agent automation?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Judge any agent-tooling platform on the contract it exposes,
                   the trust surface it adds, and what happens when a tool
@@ -277,12 +268,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="treasury-ai-agent-guardrails/"
-                    >How do you keep AI agents from taking the wrong action in
-                    treasury workflows?</a
+                    >How do companies keep AI agents from taking the wrong
+                    action in treasury workflows?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Tiered autonomy: read-only by default, scoped credentials,
                   API-enforced limits, and approval gates on anything that moves
@@ -290,12 +281,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="ai-execution-layer-not-a-dashboard/"
-                    >Which AI platform acts as an execution layer instead of
+                    >What makes an AI platform an execution layer instead of
                     another dashboard?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   The test: does it perform the work across your existing tools,
                   with encoded runbooks and verifiable actions, or just display
@@ -303,12 +294,12 @@
                 </p>
               </li>
               <li>
-                <h3>
+                <h2>
                   <a href="campaign-operations-resilient-to-departures/"
                     >How do you make campaign operations resilient to operator
                     departures?</a
                   >
-                </h3>
+                </h2>
                 <p>
                   Move the sequencing logic, optimization patterns, and workflow
                   decisions into the stack as encoded, runnable workflows
