@@ -27,6 +27,10 @@ Short direct-answer pages on practical AI agent engineering, each answering one 
 - [Version AI agents without breaking workflows](https://keryxsolutions.com/insights/version-ai-agents-without-breaking-workflows/): Agent definitions in version control, pinned models, contract tests, and staged rollout.
 - [Make AI workflow database updates succeed or fail together](https://keryxsolutions.com/insights/database-updates-succeed-or-fail-together/): Single-transaction writes, idempotency keys, and the outbox or saga pattern when writes span systems.
 - [Reliable multi-agent research workflows](https://keryxsolutions.com/insights/reliable-multi-agent-research-workflows/): One orchestrator, bounded verifiable delegation, checkpoints, and failure discipline for runs that finish.
+- [Evaluating Smithery for agent automation](https://keryxsolutions.com/insights/evaluate-smithery-agent-automation/): Criteria-first evaluation: the MCP contract, the trust surface of third-party servers, and what happens when tools change.
+- [AI agent guardrails for treasury workflows](https://keryxsolutions.com/insights/treasury-ai-agent-guardrails/): Tiered autonomy, least privilege, API-enforced limits, and approval gates for consequential actions.
+- [An AI execution layer, not another dashboard](https://keryxsolutions.com/insights/ai-execution-layer-not-a-dashboard/): The display-versus-action test, and what an execution layer actually contains.
+- [Campaign operations that survive operator departures](https://keryxsolutions.com/insights/campaign-operations-resilient-to-departures/): Encode the sequencing, optimization patterns, and decisions in the stack instead of in people.
 
 ## Contact
 
