@@ -59,13 +59,17 @@ When adding a page:
   og/twitter card, canonical URL, robots meta.
 - H1 asks the exact question; the first paragraph under it is the direct
   answer (the snippet/AI-Overview target).
-- Two-crumb breadcrumb (`Home › short page label`) plus a matching 2-item
-  BreadcrumbList JSON-LD. No middle crumb: there is deliberately no
-  `/insights/` index page, and `#services` is not a semantic parent.
+- Three-crumb breadcrumb (`Home › Insights › short page label`) plus a
+  matching 3-item BreadcrumbList JSON-LD; the `Insights` crumb links
+  `/insights/`. The hub page exists at `insights/index.html`
+  (decision reversed 2026-11-05 with 8 pages in the cluster; the original
+  retraction was about a blog-post index that duplicated the Substack
+  archive, which an insights hub does not).
 - Cross-link sibling pages only where topically real; link a blog post only
   where one genuinely covers the topic (weak links are noise).
-- The same change updates the mirrors: one `<url>` per page in `sitemap.xml`
-  and a line in the `## Insight answers` section of `llms.txt`.
+- The same change updates the mirrors: one `<url>` per page in `sitemap.xml`,
+  a line in the `## Insight answers` section of `llms.txt`, and a row
+  (question + one-line answer) on the `/insights/` hub page.
 - Copy is net-new only: blog.keryxsolutions.com is the canonical full-text
   home; never copy or near-copy post text onto the main site (Substack cannot
   set outbound rel=canonical). Copy follows the Keryx writing style guide

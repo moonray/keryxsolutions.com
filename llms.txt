@@ -21,6 +21,7 @@ Key points:
 
 ## Insight answers
 
+- [AI agent engineering insights](https://keryxsolutions.com/insights/): The index of these direct-answer pages.
 Short direct-answer pages on practical AI agent engineering, each answering one question:
 
 - [Detect an AI agent workflow going off track](https://keryxsolutions.com/insights/detect-off-track-ai-agent-workflows/): Outcome checks, budgets, assertions, and traceability that catch an off-track run before it compounds.
