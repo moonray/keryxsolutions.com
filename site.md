@@ -1,6 +1,6 @@
 # Keryx Solutions
 
-> Keryx Solutions builds custom software, AI-powered tools, and scalable architectures for startups and growing businesses that need reliable, expertly engineered solutions.
+> Custom software, AI-powered tools, and scalable architecture for startups and growing businesses — expertly engineered by Keryx Solutions.
 
 ## Who this is for
 
