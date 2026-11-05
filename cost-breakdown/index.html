@@ -365,11 +365,15 @@
                 >.
               </div>
               <div id="cost-form-success" class="form-success" hidden>
-                <p><strong>Done. Your download has started.</strong></p>
                 <p>
-                  If it didn't start, get it here:
-                  <a href="dealership-cost-breakdown.pdf" download
-                    >dealership-cost-breakdown.pdf</a
+                  <strong
+                    >Thanks. The cost breakdown is opening in a new tab.</strong
+                  >
+                </p>
+                <p>
+                  If nothing opened, view it here:
+                  <a href="keryx-dealership-cost-breakdown.pdf"
+                    >keryx-dealership-cost-breakdown.pdf</a
                   >
                 </p>
               </div>
@@ -452,8 +456,8 @@
          The live form id is mljjvaby (set 2026-11-05). To point this page
          at a different Formspree form, change BOTH this constant and the
          form's action attribute above. The form posts natively without JS;
-         with JS the submit is upgraded to an inline success state + instant
-         PDF download from dealership-cost-breakdown.pdf.
+         with JS the submit is upgraded to an inline success state + the PDF
+         opening in a new tab (keryx-dealership-cost-breakdown.pdf).
          ============================================================ -->
     <script>
       window.FORMSPREE_FORM_ID = "mljjvaby";
@@ -490,7 +494,13 @@
               form.hidden = true;
               var success = document.getElementById("cost-form-success");
               if (success) success.hidden = false;
-              window.location.href = "dealership-cost-breakdown.pdf";
+              // New tab keeps the visitor on this page; if a popup blocker
+              // intervenes, the success card's view-it-here link is the fallback.
+              window.open(
+                "keryx-dealership-cost-breakdown.pdf",
+                "_blank",
+                "noopener",
+              );
             })
             .catch(function () {
               button.disabled = false;
