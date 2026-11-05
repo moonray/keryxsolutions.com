@@ -92,6 +92,9 @@
       .cost-hero {
         padding: 8rem 0 4rem;
       }
+      .cost-hero .breadcrumb {
+        margin-bottom: 1.25rem;
+      }
       .cost-hero .body-large {
         max-width: 44rem;
         margin-top: 1.5rem;
@@ -227,6 +230,26 @@
         }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://keryxsolutions.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Dealership cost breakdown",
+            "item": "https://keryxsolutions.com/cost-breakdown/"
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
@@ -262,6 +285,11 @@
     <main id="main-content">
       <section class="cost-hero">
         <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Home</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Dealership cost breakdown</span>
+          </nav>
           <h1 class="headline-large">
             What a dealership website really costs.
           </h1>
