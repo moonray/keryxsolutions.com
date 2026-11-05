@@ -336,7 +336,7 @@
                 id="cost-form"
                 class="cost-form"
                 method="POST"
-                action="https://formspree.io/f/FORMSPREE_FORM_ID"
+                action="https://formspree.io/f/mljjvaby"
               >
                 <input
                   type="hidden"
@@ -449,14 +449,14 @@
 
     <!-- ============================================================
          FORMSPREE WIRING — the single wiring point for this page's form.
-         Swap FORMSPREE_FORM_ID for the real Formspree form id (the {id} in
-         https://formspree.io/f/{id}) — no other edit needed: the form
-         posts natively without JS, and with JS the submit is upgraded to
-         an inline success state + instant PDF download. Until the id is
-         set, the "almost ready" placeholder card shows instead.
+         The live form id is mljjvaby (set 2026-11-05). To point this page
+         at a different Formspree form, change BOTH this constant and the
+         form's action attribute above. The form posts natively without JS;
+         with JS the submit is upgraded to an inline success state + instant
+         PDF download from dealership-cost-breakdown.pdf.
          ============================================================ -->
     <script>
-      window.FORMSPREE_FORM_ID = "FORMSPREE_FORM_ID";
+      window.FORMSPREE_FORM_ID = "mljjvaby";
       (function () {
         var id = window.FORMSPREE_FORM_ID;
         var form = document.getElementById("cost-form");
