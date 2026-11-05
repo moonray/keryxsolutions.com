@@ -1419,10 +1419,6 @@ footer {
     grid-column: span 5;
   }
 
-  .expertise-card--support {
-    grid-column: span 12;
-  }
-
   .expertise-header .section-copy {
     max-width: 58rem;
   }
